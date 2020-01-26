@@ -2,7 +2,7 @@
 
 <configuration>
 
-    <property name="HOME_LOG" value="/var/log/spring.log"/>
+    <property name="HOME_LOG" value="/usr/local/jetty/base/logs/spring.log"/>
 
     <appender name="FILE-ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${HOME_LOG}</file>
