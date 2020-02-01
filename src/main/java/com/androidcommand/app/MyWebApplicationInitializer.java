@@ -13,15 +13,15 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer {
     public void onStartup(ServletContext servletCxt) {
 
         // Load Spring web application configuration
-        AnnotationConfigWebApplicationContext ac = new AnnotationConfigWebApplicationContext();
-        ac.register(AppConfig.class);
-        ac.refresh();
+        AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
+        ctx.register(AppConfig.class);
+        ctx.refresh();
         System.out.println("In MyWebApplicationInitializer ");
 
         // Create and register the DispatcherServlet
-        DispatcherServlet servlet = new DispatcherServlet(ac);
-        ServletRegistration.Dynamic registration = servletCxt.addServlet("app", servlet);
+        DispatcherServlet servlet = new DispatcherServlet(ctx);
+        ServletRegistration.Dynamic registration = servletCxt.addServlet("CompaniesServlet", servlet);
         registration.setLoadOnStartup(1);
-        registration.addMapping("/app/*");
+        registration.addMapping("/");
     }
 }

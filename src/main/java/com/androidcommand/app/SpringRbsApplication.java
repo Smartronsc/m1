@@ -28,7 +28,7 @@ public class SpringRbsApplication {
 	public static void main(String[] args) {
 //		SpringApplication.run(SpringRbsApplication.class, args);
 		
-		
+		System.out.println("SpringRbsApplication is now running");
 		try { 
 			 
 			   cluster = Cluster.builder().withoutMetrics().addContactPoints(InetAddress.getByName("192.168.1.5") ).build(); 

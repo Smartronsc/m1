@@ -18,14 +18,14 @@ public class EmployeeController {
  
     private Map<Long, Employee> employeeMap = new HashMap<>();
  
-    /* /addEmployee */
-    @RequestMapping(value = "/counts", method = RequestMethod.POST)
+    @RequestMapping(value = "/emplyee", method = RequestMethod.POST)
     public String submit(
       @ModelAttribute("employee") Employee employee,
       BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
             return "error";
         }
+        model.addAttribute("address", employee.getAddress());
         model.addAttribute("name", employee.getName());
         model.addAttribute("id", employee.getId());
  

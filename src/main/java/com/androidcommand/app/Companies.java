@@ -1,5 +1,6 @@
 package com.androidcommand.app;
 
+import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -99,5 +100,19 @@ public class Companies {
 
 	  public Companies() {}
 
-	  // getters and setters
+		public String getCompany() {
+			return this.company_company;
+		}
+	 
+		public void setCompany(String company_company) {
+			this.company_company = company_company;
+		}
+
+		public String getWebsite() {
+			return this.company_websitec;
+		}
+		
+		public void setWebsite(String company_websitec) {
+			this.company_company = company_websitec;
+		}
 	}
