@@ -1,3 +1,9 @@
+/*
+ * =============================================================================
+ *
+ *   Copyright (c) 2015, 2020, RichardBradleySmith.com All Rights Reserved
+ *   
+ */
 package com.androidcommand.app;
 
 import java.util.HashMap;
@@ -17,8 +23,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class EmployeeController {
  
     private Map<Long, Employee> employeeMap = new HashMap<>();
- 
-    @RequestMapping(value = "/emplyee", method = RequestMethod.POST)
+
+    @ModelAttribute
+    public void addAttributes(Model model) {
+        model.addAttribute("msg", "Welcome to Ohio!");
+    }
+    
+    @RequestMapping(value = "/employee", method = RequestMethod.POST)
     public String submit(
       @ModelAttribute("employee") Employee employee,
       BindingResult result, ModelMap model) {
@@ -33,8 +44,5 @@ public class EmployeeController {
  
         return "employeeView";
     }
-    @ModelAttribute
-    public void addAttributes(Model model) {
-        model.addAttribute("msg", "Welcome to the Netherlands!");
-    }
+
 }

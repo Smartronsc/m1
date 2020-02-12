@@ -2,12 +2,6 @@ package com.androidcommand.app;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.UUID;
-
-import org.apache.logging.log4j.Logger;
-import org.hibernate.validator.internal.util.logging.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.cassandra.core.CassandraOperations;
 import org.springframework.data.cassandra.core.CassandraTemplate;
@@ -31,7 +25,7 @@ public class SpringRbsApplication {
 		System.out.println("SpringRbsApplication is now running");
 		try { 
 			 
-			   cluster = Cluster.builder().withoutMetrics().addContactPoints(InetAddress.getByName("192.168.1.5") ).build(); 
+			   cluster = Cluster.builder().withoutMetrics().addContactPoints(InetAddress.getByName("192.168.1.4") ).build(); 
 			 
 			   session = cluster.connect("rant"); 
 			 

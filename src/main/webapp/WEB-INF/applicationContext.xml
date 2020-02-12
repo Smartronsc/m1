@@ -16,13 +16,11 @@
    <bean class = "org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
       <property name = "mappings">
          <props>
-            <prop key = "/counts">EmployeeController</prop>		   
-            <prop key = "/companies">CompaniesController</prop>
+            <prop key = "/seed">SeedStarterMngController</prop>
          </props>
       </property>
    </bean>
 
-   <bean id = "EmployeeController" class = "com.androidcommand.app.EmployeeController" />
-
-   <bean id = "CompaniesController" class = "com.androidcommand.app.CompaniesController"/>   
+  
+   <bean id = "SeedStarterMngController" class = "com.androidcommand.app.web.controller.SeedStarterMngController"/>    
 </beans>

@@ -8,7 +8,7 @@ public class AppConfig {
 
     @Bean
     public MyBean myBean() {
-    	System.out.println("In AppConfig for MyBeant ");
+    	System.out.println("In AppConfig for MyBean ");
 		return null;
     }
 }

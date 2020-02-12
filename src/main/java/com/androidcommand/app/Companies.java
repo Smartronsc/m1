@@ -1,12 +1,7 @@
 package com.androidcommand.app;
 
-import java.net.URL;
-import java.time.LocalDateTime;
-import java.util.UUID;
-
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
-import org.springframework.data.cassandra.core.mapping.Column;
+
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
 
@@ -115,4 +110,9 @@ public class Companies {
 		public void setWebsite(String company_websitec) {
 			this.company_company = company_websitec;
 		}
+		
+		public String CompanyInformation() {
+			   System.out.println("Company Information " + this.company_company);
+			   return this.company_userid;
+			}  
 	}
