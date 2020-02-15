@@ -57,7 +57,7 @@ public class SpringWebConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/images/**").addResourceLocations("/images/");
         registry.addResourceHandler("/css/**").addResourceLocations("/css/");
         registry.addResourceHandler("/js/**").addResourceLocations("/js/");
-        System.out.println("In SpringWebConfig.java: addResourceHandlers");
+        System.out.println("In SpringWebConfig.java: addResourceHandlers " + registry.toString());
     }
 
     /*
@@ -67,7 +67,7 @@ public class SpringWebConfig implements WebMvcConfigurer {
     public ResourceBundleMessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
         messageSource.setBasename("Messages");
-        System.out.println("In SpringWebConfig.java: ResourceBundleMessageSource");
+        System.out.println("In SpringWebConfig.java: ResourceBundleMessageSource " + messageSource.toString());
         return messageSource;
     }
 
@@ -108,6 +108,7 @@ public class SpringWebConfig implements WebMvcConfigurer {
         // resource resolution infrastructure, which is highly recommended.
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(this.applicationContext);
+//        System.out.println("In SpringWebConfig.java: applicationContextr " + this.applicationContext.toString());
         templateResolver.setPrefix("/WEB-INF/templates/");
         templateResolver.setSuffix(".html");
         // HTML is the default value, added here for the sake of clarity.
@@ -115,7 +116,7 @@ public class SpringWebConfig implements WebMvcConfigurer {
         // Template cache is true by default. Set to false if you want
         // templates to be automatically updated when modified.
         templateResolver.setCacheable(true);
-        System.out.println("In SpringWebConfig.java: SpringResourceTemplateResolver");
+//        System.out.println("In SpringWebConfig.java: SpringResourceTemplateResolver " + templateResolver.toString());
         return templateResolver;
     }
 
@@ -131,7 +132,7 @@ public class SpringWebConfig implements WebMvcConfigurer {
         // across different data types, so this flag is "false" by default
         // for safer backwards compatibility.
         templateEngine.setEnableSpringELCompiler(true);
-        System.out.println("In SpringWebConfig.java: SpringTemplateEngine");
+        System.out.println("In SpringWebConfig.java: SpringTemplateEngine " + templateEngine.toString());
         return templateEngine;
     }
 
@@ -139,7 +140,7 @@ public class SpringWebConfig implements WebMvcConfigurer {
     public ThymeleafViewResolver viewResolver(){
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(templateEngine());
-        System.out.println("In SpringWebConfig.java: ThymeleafViewResolver");
+        System.out.println("In SpringWebConfig.java: ThymeleafViewResolver " + viewResolver.toString());
         return viewResolver;
     }
 

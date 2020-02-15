@@ -136,7 +136,7 @@ public class Companies {
 //	             LOG.info(cassandraOps.queryForObject(s, Companies.class).getId()); 
 		           System.out.println("In Companies.java for company information " + cassandraOps.selectOne(s, Companies.class).CompanyInformation());
 
-//		           getServletContext().getRequestDispatcher("/companies.jsp").forward(request,response);
+//		           getServletContext().getRequestDispatcher("/companies").forward(request,response);
 
 		           cassandraOps.truncate(Companies.class);  // empties the table
 				 

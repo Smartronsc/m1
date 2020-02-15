@@ -1,22 +1,9 @@
 package com.androidcommand.app;
 
-import org.apache.logging.log4j.LoggingException;
-import org.eclipse.jetty.server.*;
-import org.eclipse.jetty.server.handler.HandlerCollection;
-import org.eclipse.jetty.server.handler.RequestLogHandler;
-import org.eclipse.jetty.util.thread.QueuedThreadPool;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.web.embedded.jetty.JettyServerCustomizer;
-import org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory;
-import org.springframework.boot.web.server.WebServerFactoryCustomizer;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
-import java.io.File;
 
 /**
  * Created by vinay on 2/3/16.
- */
+ 
 @Configuration
 public class HelloWorldJettyCustomizer {
 
@@ -80,4 +67,4 @@ public class HelloWorldJettyCustomizer {
             });
         };
     }
-}
+}*/

@@ -21,7 +21,7 @@ public class CompaniesController {
 	public ModelAndView handleRequest(@ModelAttribute(value="Companies") Companies company_company) {
 		System.out.println("In CompaniesController");
         ModelAndView mav = new ModelAndView();
-        mav.setViewName("companies.jsp");
+        mav.setViewName("companies");
         return mav;
 
 	}
