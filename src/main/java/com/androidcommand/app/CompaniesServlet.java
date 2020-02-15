@@ -37,8 +37,8 @@ public class CompaniesServlet extends HttpServlet {
 		System.out.println("Attempting to start Cassandra");
 		try { 
 			 
-			   cluster = Cluster.builder().withoutMetrics().addContactPoints(InetAddress.getByName("192.168.1.4") ).build(); 
-			 
+			   cluster = Cluster.builder().withoutJMXReporting().addContactPoints(InetAddress.getByName("192.168.1.4") ).build(); 
+			   
 			   session = cluster.connect("rant"); 
 			 
 			   CassandraOperations cassandraOps = new CassandraTemplate(session); 

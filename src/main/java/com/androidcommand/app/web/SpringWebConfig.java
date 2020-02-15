@@ -38,7 +38,7 @@ public class SpringWebConfig implements WebMvcConfigurer {
     public void setApplicationContext(final ApplicationContext applicationContext)
             throws BeansException {
         this.applicationContext = applicationContext;
-        System.out.println("in SpringWebConfig.java");
+        System.out.println("In SpringWebConfig.java: setApplicationContext");
     }
 
 
@@ -57,7 +57,7 @@ public class SpringWebConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/images/**").addResourceLocations("/images/");
         registry.addResourceHandler("/css/**").addResourceLocations("/css/");
         registry.addResourceHandler("/js/**").addResourceLocations("/js/");
-        System.out.println("in SpringWebConfig.java");
+        System.out.println("In SpringWebConfig.java: addResourceHandlers");
     }
 
     /*
@@ -67,7 +67,7 @@ public class SpringWebConfig implements WebMvcConfigurer {
     public ResourceBundleMessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
         messageSource.setBasename("Messages");
-        System.out.println("in SpringWebConfig.java");
+        System.out.println("In SpringWebConfig.java: ResourceBundleMessageSource");
         return messageSource;
     }
 
@@ -80,18 +80,18 @@ public class SpringWebConfig implements WebMvcConfigurer {
     /*    super.addFormatters(registry); */
         registry.addFormatter(varietyFormatter());
         registry.addFormatter(dateFormatter());
-        System.out.println("in SpringWebConfig.java");
+        System.out.println("In SpringWebConfig.java: addFormatters");
     }
 
     @Bean
     public VarietyFormatter varietyFormatter() {
-        System.out.println("in SpringWebConfig.java");
+        System.out.println("In SpringWebConfig.java: VarietyFormatter");
         return new VarietyFormatter();
     }
 
     @Bean
     public DateFormatter dateFormatter() {
-        System.out.println("in SpringWebConfig.java");
+        System.out.println("In SpringWebConfig.java: DateFormatter");
         return new DateFormatter();
     }
 
@@ -115,7 +115,7 @@ public class SpringWebConfig implements WebMvcConfigurer {
         // Template cache is true by default. Set to false if you want
         // templates to be automatically updated when modified.
         templateResolver.setCacheable(true);
-        System.out.println("in SpringWebConfig.java");
+        System.out.println("In SpringWebConfig.java: SpringResourceTemplateResolver");
         return templateResolver;
     }
 
@@ -131,7 +131,7 @@ public class SpringWebConfig implements WebMvcConfigurer {
         // across different data types, so this flag is "false" by default
         // for safer backwards compatibility.
         templateEngine.setEnableSpringELCompiler(true);
-        System.out.println("in SpringWebConfig.java");
+        System.out.println("In SpringWebConfig.java: SpringTemplateEngine");
         return templateEngine;
     }
 
@@ -139,7 +139,7 @@ public class SpringWebConfig implements WebMvcConfigurer {
     public ThymeleafViewResolver viewResolver(){
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(templateEngine());
-        System.out.println("in SpringWebConfig.java");
+        System.out.println("In SpringWebConfig.java: ThymeleafViewResolver");
         return viewResolver;
     }
 

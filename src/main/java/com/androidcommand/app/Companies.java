@@ -1,16 +1,34 @@
 package com.androidcommand.app;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.cassandra.core.CassandraOperations;
+import org.springframework.data.cassandra.core.CassandraTemplate;
 import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
 
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.Session;
+import com.datastax.driver.core.querybuilder.QueryBuilder;
+import com.datastax.driver.core.querybuilder.Select;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Table("companies")
 @Getter @Setter
+@Configuration
 public class Companies {
+	private static final long serialVersionUID = 1L;
+    private static Cluster cluster; 
+	private static Session session; 
+
 
   @PrimaryKeyColumn(name = "company_company", type = PrimaryKeyType.PARTITIONED)
   private String company_company;
@@ -94,6 +112,41 @@ public class Companies {
 	  }
 
 	  public Companies() {}
+	  
+	    @Bean
+	    public ModelAndView myCompaniesbean() {
+	    	System.out.println("In Companies.java for MyCompaniesBean ");
+		    ModelAndView mav = new ModelAndView();
+		    mav.setViewName("companies.html");
+		    System.out.println("In Companies.java for ModelandView " + mav.getViewName());
+			try { 
+				 
+				   cluster = Cluster.builder().withoutJMXReporting().addContactPoints(InetAddress.getByName("192.168.1.4") ).build(); 
+				   
+				   session = cluster.connect("rant"); 
+				 
+				   CassandraOperations cassandraOps = new CassandraTemplate(session); 
+				 
+				   cassandraOps.insert(new Companies("name1", "user", "category", "first", "last", "city", "state", "zipcode", "phone", "email",  
+						   "addr1c", "adddr2c", "cityc", "statec", "zipcodec", "phonec", "emailc", "website", 0.0, 0.0, 
+				           0, 0, "pr", 0, "text"));
+				   Select s = QueryBuilder.select().from("Companies"); 
+				   s.where(QueryBuilder.eq("company_company", "name1")); 
+				 
+//	             LOG.info(cassandraOps.queryForObject(s, Companies.class).getId()); 
+		           System.out.println("In Companies.java for company information " + cassandraOps.selectOne(s, Companies.class).CompanyInformation());
+
+//		           getServletContext().getRequestDispatcher("/companies.jsp").forward(request,response);
+
+		           cassandraOps.truncate(Companies.class);  // empties the table
+				 
+				  } catch (UnknownHostException e) { 
+				   e.printStackTrace(); 
+				  }
+
+	        return mav;
+
+	    }
 
 		public String getCompany() {
 			return this.company_company;

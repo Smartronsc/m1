@@ -22,7 +22,7 @@
         </encoder>
     </appender>
 
-    <logger name="com.androidcommand.app" level="trace" additivity="false">
+    <logger name="com.androidcommand.app" level="warning" additivity="false">
         <appender-ref ref="FILE-ROLLING"/>
     </logger>
 

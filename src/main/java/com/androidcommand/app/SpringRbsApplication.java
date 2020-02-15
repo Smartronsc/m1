@@ -2,6 +2,8 @@ package com.androidcommand.app;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.cassandra.core.CassandraOperations;
 import org.springframework.data.cassandra.core.CassandraTemplate;
@@ -20,7 +22,7 @@ public class SpringRbsApplication {
 	 private static Session session; 
 
 	public static void main(String[] args) {
-//		SpringApplication.run(SpringRbsApplication.class, args);
+		SpringApplication.run(SpringRbsApplication.class, args);
 		
 		System.out.println("SpringRbsApplication is now running");
 		try { 
