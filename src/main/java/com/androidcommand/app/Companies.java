@@ -25,37 +25,37 @@ import lombok.Setter;
 @Getter @Setter
 @Configuration
 public class Companies {
-	private static final long serialVersionUID = 1L;
+  	private static final long serialVersionUID = 1L;
     private static Cluster cluster; 
 	private static Session session; 
 
 
-  @PrimaryKeyColumn(name = "company_company", type = PrimaryKeyType.PARTITIONED)
-  private String company_company;
-  private String company_userid;
-  private String company_category;
-  private String company_first;
-  private String company_last;
-  private String company_city;
-  private String company_state;
-  private String company_zipcode;
-  private String company_phone;
-  private String company_email;
-  private String company_addr1c;
-  private String company_addr2c;
-  private String company_cityc;
-  private String company_statec; 
-  private String company_zipcodec;
-  private String company_phonec;
-  private String company_emailc;
-  private String company_websitec;
-  private Double company_latitudec;
-  private Double company_longitudec;
-  private int company_rantsc;
-  private int company_ravesc;
-  private String company_pr;
-  private int company_uuid;
-  private String company_text;   
+    @PrimaryKeyColumn(name = "company_company", type = PrimaryKeyType.PARTITIONED)
+    private String company_company;
+    private String company_userid;
+    private String company_category;
+    private String company_first;
+    private String company_last;
+    private String company_city;
+    private String company_state;
+    private String company_zipcode;
+    private String company_phone;
+    private String company_email;
+    private String company_addr1c;
+    private String company_addr2c;
+    private String company_cityc;
+    private String company_statec; 
+    private String company_zipcodec;
+    private String company_phonec;
+    private String company_emailc;
+    private String company_websitec;
+    private Double company_latitudec;
+    private Double company_longitudec;
+    private int company_rantsc;
+    private int company_ravesc;
+    private String company_pr;
+    private int company_uuid;
+    private String company_text;   
 
 	  public Companies(
 		  final String company_company,	  
@@ -100,7 +100,7 @@ public class Companies {
 	    this.company_zipcodec = company_zipcodec;
 	    this.company_phonec = company_phonec;
 	    this.company_emailc = company_emailc;
-	    this.company_websitec = company_websitec;
+ 	    this.company_websitec = company_websitec;
 	    this.company_latitudec = company_latitudec;
 	    this.company_longitudec = company_longitudec;
 	    this.company_rantsc = rantsc;

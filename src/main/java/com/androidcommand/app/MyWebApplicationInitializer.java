@@ -13,7 +13,7 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer {
 	@Override
     public void onStartup(ServletContext container) throws ServletException {
      
-		System.out.println("In onStartup");
+		System.out.println("In MyWebApplicationInitializer onStartup");
 	/*	
 	 * root-context.xml is the Spring Root Application Context Configuration. 
      * It's optional. It's for configuring your non-web beans. 
@@ -36,7 +36,7 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer {
         ServletRegistration.Dynamic dispatcher = container.addServlet("dispatcher", new DispatcherServlet(dispatcherContext));
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");
-        System.out.println(dispatcher.toString());
+        System.out.println("In MyWebApplicationInitializer dispatcher " + dispatcher.toString());
     }
 	
 	

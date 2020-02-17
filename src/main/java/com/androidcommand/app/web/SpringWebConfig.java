@@ -108,7 +108,6 @@ public class SpringWebConfig implements WebMvcConfigurer {
         // resource resolution infrastructure, which is highly recommended.
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(this.applicationContext);
-//        System.out.println("In SpringWebConfig.java: applicationContextr " + this.applicationContext.toString());
         templateResolver.setPrefix("/WEB-INF/templates/");
         templateResolver.setSuffix(".html");
         // HTML is the default value, added here for the sake of clarity.

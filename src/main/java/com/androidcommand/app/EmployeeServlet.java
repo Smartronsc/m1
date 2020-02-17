@@ -28,7 +28,7 @@ public class EmployeeServlet extends HttpServlet {
 	   */
 	  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doPost in CompServlet.java for " + request.getServletPath().toString());
-		 String company = request.getParameter("companyName");
+	//	 String company = request.getParameter("companyName");
 	/*	 String infoArray = CompanyDAO.getCompanyInformation(company);  
 		 request.setAttribute("infoArray", infoArray);*/
 		 getServletContext().getRequestDispatcher("/employee.jsp").forward(request,response);    

@@ -51,7 +51,7 @@ public class CompaniesServlet extends HttpServlet {
 			 
 //             LOG.info(cassandraOps.queryForObject(s, Companies.class).getId()); 
 	           System.out.println(cassandraOps.selectOne(s, Companies.class).CompanyInformation());
-	           getServletContext().getRequestDispatcher("/companies").forward(request,response);
+	           getServletContext().getRequestDispatcher("/companies.jsp").forward(request,response);
 
 	           cassandraOps.truncate(Companies.class);  // empties the table
 			 
@@ -65,7 +65,7 @@ public class CompaniesServlet extends HttpServlet {
 	   */
 	  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doPost in CompServlet.java for " + request.getServletPath().toString());
-		 String company = request.getParameter("companyName");
+	//	 String company = request.getParameter("companyName");
 	/*	 String infoArray = CompanyDAO.getCompanyInformation(company);  
 		 request.setAttribute("infoArray", infoArray);*/
 		 getServletContext().getRequestDispatcher("/companies").forward(request,response);    
