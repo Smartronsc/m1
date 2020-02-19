@@ -21,8 +21,10 @@ public class CompaniesController {
 	public ModelAndView handleRequest(@ModelAttribute(value="Companies") Companies company_company) {
 		System.out.println("In CompaniesController");
 		Companies company = new Companies();
-		company.setCompany("tear Drop");
+		company.setCompany("Tear Drop");
         ModelAndView mav = new ModelAndView();
+        mav.addObject(company);
+		System.out.println("Company is " + company.getCompany());
         mav.setViewName("companies");
         return mav;
 

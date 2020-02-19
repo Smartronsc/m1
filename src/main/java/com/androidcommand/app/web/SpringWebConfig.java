@@ -9,10 +9,11 @@ package com.androidcommand.app.web;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -62,15 +63,24 @@ public class SpringWebConfig implements WebMvcConfigurer {
 
     /*
      *  Message externalization/internationalization
-     */
+    
     @Bean
     public ResourceBundleMessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
         messageSource.setBasename("Messages");
         System.out.println("In SpringWebConfig.java: ResourceBundleMessageSource " + messageSource.toString());
         return messageSource;
-    }
+    }   */
 
+    @Bean
+    public MessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasename("messages/label");
+        messageSource.setCacheSeconds(10); //reload messages every 10 seconds
+        messageSource.setUseCodeAsDefaultMessage(true);
+        return messageSource;
+    }
+    
     /*
      * Add formatter for class {@link thymeleafexamples.stsm.business.entities.Variety}
      * and {@link java.util.Date} in addition to the one registered by default

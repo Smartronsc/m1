@@ -20,6 +20,11 @@
          </props>
       </property>
    </bean>
+   
+    <!-- Application Message Bundle -->
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="classpath:resources/messages_en.properties" />
+    </bean>
 
   
    <bean id = "SeedStarterMngController" class = "com.androidcommand.app.web.controller.SeedStarterMngController"/>    

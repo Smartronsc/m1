@@ -9,17 +9,22 @@
   </head>
 
   <body>
-
+   <form action="#" th:action="@{/companies}" th:object="${Companies}" method="post">
     <div>
       <img src="../../images/rantlogo.png" alt="Rant logo" title="Rant logo" 
+           th:src="@{/images/rantlogo.png}"/>
+            <img src="../../images/rant!rave.png" alt="Rant!Rave" title="Rant!Rave logo" 
+           th:src="@{/images/rant!rave.png}"/>
+           
+ <!--       <img src="../../images/rantlogo.png" alt="Rant logo" title="Rant logo" 
            th:src="@{/images/rantlogo.png}" th:alt-title="#{title.application}"/>
             <img src="../../images/rant!rave.png" alt="Rant!Rave" title="Rant!Rave logo" 
-           th:src="@{/images/rant!rave.png}" th:alt-title="#{title.application}"/>
+           th:src="@{/images/rant!rave.png}" th:alt-title="#{title.application}"/>     -->         
     </div>
     
-   <p th:text="company: #{company}">">We've heard great things about you!</p> 
+<p th:text="#{Companies.company_company}">">We've heard great things about you!</p> 
 
 <!-- <p th:utext="#{home.welcome(${session.user.name})}">Welcome to our grocery store, Smartron!!</p>  -->
-
+  </form>
   </body>
 </html>
