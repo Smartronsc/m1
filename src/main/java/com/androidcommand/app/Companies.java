@@ -31,8 +31,8 @@ public class Companies {
 
 
     @PrimaryKeyColumn(name = "company_company", type = PrimaryKeyType.PARTITIONED)
-    private String company_company;
-    private String company_userid;
+    public String company_company;
+    public String company_userid;
     private String company_category;
     private String company_first;
     private String company_last;
@@ -149,23 +149,35 @@ public class Companies {
 	    }
 
 		public String getCompany() {
+			System.out.println("In Companies.java getCompany() " + this.company_company);
 			return this.company_company;
 		}
 	 
 		public void setCompany(String company_company) {
+			System.out.println("In Companies.java setCompany() " + company_company);
 			this.company_company = company_company;
 		}
+		
+		public String getUserid() {
+			System.out.println("In Companies.java getUserid() " + this.company_userid);
+			return this.company_userid;
+		}
 
+		public void setUserid(String company_userid) {
+			System.out.println("In Companies.java setCompany() " + company_userid);
+			this.company_userid = company_userid;
+		}
+		
 		public String getWebsite() {
 			return this.company_websitec;
 		}
 		
 		public void setWebsite(String company_websitec) {
-			this.company_company = company_websitec;
+			this.company_websitec = company_websitec;
 		}
 		
 		public String CompanyInformation() {
-			   System.out.println("Company Information " + this.company_company);
+			   System.out.println("In Company.java CompanyInformation() " + this.company_userid);
 			   return this.company_userid;
-			}  
+			}
 	}

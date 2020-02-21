@@ -22,9 +22,12 @@
            th:src="@{/images/rant!rave.png}" th:alt-title="#{title.application}"/>     -->         
     </div>
     
-<p th:text="#{Companies.company_company}">">We've heard great things about you!</p> 
+<p th:text="${string}">">We've heard great things about you!</p>
+<p th:text="${userid}">">We've heard great things about you!</p> 
 
 <!-- <p th:utext="#{home.welcome(${session.user.name})}">Welcome to our grocery store, Smartron!!</p>  -->
   </form>
+  
+ 
   </body>
 </html>

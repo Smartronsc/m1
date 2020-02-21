@@ -26,7 +26,7 @@ public class RantController {
     
     @RequestMapping(method=RequestMethod.GET)          // only accepts Get requests
     public String post(Model model) {
-		System.out.println("In RantController" + model.toString() );
+		System.out.println("In RantController " + model.asMap());
         return "redirect:/companies.jsp";
 	    }
    }
