@@ -28,10 +28,6 @@ import com.androidcommand.app.web.conversion.VarietyFormatter;
 @Configuration
 @EnableWebMvc
 @ComponentScan
-/* public class SpringWebConfig
-        extends WebMvcConfigurerAdapter implements ApplicationContextAware { */
-
-
 public class SpringWebConfig implements WebMvcConfigurer {
 	
     private ApplicationContext applicationContext;
@@ -61,23 +57,13 @@ public class SpringWebConfig implements WebMvcConfigurer {
         System.out.println("In SpringWebConfig.java: addResourceHandlers " + registry.toString());
     }
 
-    /*
-     *  Message externalization/internationalization
-    
-    @Bean
-    public ResourceBundleMessageSource messageSource() {
-        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasename("Messages");
-        System.out.println("In SpringWebConfig.java: ResourceBundleMessageSource " + messageSource.toString());
-        return messageSource;
-    }   */
-
     @Bean
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
         messageSource.setBasename("messages/label");
         messageSource.setCacheSeconds(10); //reload messages every 10 seconds
         messageSource.setUseCodeAsDefaultMessage(true);
+        System.out.println("In SpringWebConfig.java: messageSource " + messageSource.toString());
         return messageSource;
     }
     
@@ -114,18 +100,14 @@ public class SpringWebConfig implements WebMvcConfigurer {
 
     @Bean
     public SpringResourceTemplateResolver templateResolver(){
-        // SpringResourceTemplateResolver automatically integrates with Spring's own
-        // resource resolution infrastructure, which is highly recommended.
+        System.out.println("In SpringWebConfig.java: SpringResourceTemplateResolver ");
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(this.applicationContext);
+        System.out.println("In SpringWebConfig.java: applicationContext "  + this.applicationContext);
         templateResolver.setPrefix("/WEB-INF/templates/");
         templateResolver.setSuffix(".html");
-        // HTML is the default value, added here for the sake of clarity.
         templateResolver.setTemplateMode(TemplateMode.HTML);
-        // Template cache is true by default. Set to false if you want
-        // templates to be automatically updated when modified.
         templateResolver.setCacheable(true);
-//        System.out.println("In SpringWebConfig.java: SpringResourceTemplateResolver " + templateResolver.toString());
         return templateResolver;
     }
 
