@@ -133,10 +133,7 @@ public class Companies {
 				   Select s = QueryBuilder.select().from("Companies"); 
 				   s.where(QueryBuilder.eq("company_company", "name1")); 
 				 
-//	             LOG.info(cassandraOps.queryForObject(s, Companies.class).getId()); 
 		           System.out.println("In Companies.java for company information " + cassandraOps.selectOne(s, Companies.class).CompanyInformation());
-
-//		           getServletContext().getRequestDispatcher("/companies").forward(request,response);
 
 		           cassandraOps.truncate(Companies.class);  // empties the table
 				 

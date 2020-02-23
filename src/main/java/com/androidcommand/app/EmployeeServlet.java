@@ -17,17 +17,14 @@ public class EmployeeServlet extends HttpServlet {
 	 * 	
 	 */
 	  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doGet in CompServlet.java for " + request.getServletPath().toString());
-
-		
-		System.out.println("In EmployeeServlet");
+		System.out.println("In EmployeeServlet fot doGet");
 		 
 	  }
 	  /**
 
 	   */
 	  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doPost in CompServlet.java for " + request.getServletPath().toString());
+		System.out.println("doPost in EmployeeServlet.java for " + request.getServletPath().toString());
 	//	 String company = request.getParameter("companyName");
 	/*	 String infoArray = CompanyDAO.getCompanyInformation(company);  
 		 request.setAttribute("infoArray", infoArray);*/

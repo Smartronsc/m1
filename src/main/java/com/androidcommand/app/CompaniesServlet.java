@@ -30,10 +30,6 @@ public class CompaniesServlet extends HttpServlet {
 	 */
 	  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("doGet in CompServlet.java for " + request.getServletPath().toString());
-//		List<CatDAO> catRantUUID = CatDAO.listCatRantUUID();
-//		request.setAttribute("catRantUUID", catRantUUID);
-//		getServletContext().getRequestDispatcher("/cat.jsp").forward(request,response);
-		
 		System.out.println("Attempting to start Cassandra");
 		try { 
 			 
@@ -49,9 +45,8 @@ public class CompaniesServlet extends HttpServlet {
 			   Select s = QueryBuilder.select().from("Companies"); 
 			   s.where(QueryBuilder.eq("company_company", "name1")); 
 			 
-//             LOG.info(cassandraOps.queryForObject(s, Companies.class).getId()); 
-	           System.out.println(cassandraOps.selectOne(s, Companies.class).CompanyInformation());
-	           getServletContext().getRequestDispatcher("/companies.jsp").forward(request,response);
+	           System.out.println("in CompaniesServlet " + cassandraOps.selectOne(s, Companies.class).CompanyInformation());
+	           getServletContext().getRequestDispatcher("/companies.html").forward(request,response);
 
 	           cassandraOps.truncate(Companies.class);  // empties the table
 			 
@@ -64,10 +59,7 @@ public class CompaniesServlet extends HttpServlet {
 
 	   */
 	  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doPost in CompServlet.java for " + request.getServletPath().toString());
-	//	 String company = request.getParameter("companyName");
-	/*	 String infoArray = CompanyDAO.getCompanyInformation(company);  
-		 request.setAttribute("infoArray", infoArray);*/
-		 getServletContext().getRequestDispatcher("/companies").forward(request,response);    
+    	System.out.println("doPost in CompServlet.java for " + request.getServletPath().toString());
+	    getServletContext().getRequestDispatcher("/companies").forward(request,response);    
 	  }
 }

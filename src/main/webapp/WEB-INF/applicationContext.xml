@@ -7,11 +7,11 @@
    http://www.springframework.org/schema/context 
    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-   <bean class = "org.springframework.web.servlet.view.InternalResourceViewResolver">
+   <!--    <bean class = "org.springframework.web.servlet.view.InternalResourceViewResolver">
       <property name = "prefix" value = "/WEB-INF/"/>
       <property name = "suffix" value = ".jsp"/>
    </bean>
-   
+
    
    <bean class = "org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
       <property name = "mappings">
@@ -20,12 +20,15 @@
          </props>
       </property>
    </bean>
+    -->
    
-    <!-- Application Message Bundle -->
+    <!-- Application Message Bundle  
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basename" value="classpath:resources/labels_en.properties" />
     </bean>
 
   
    <bean id = "SeedStarterMngController" class = "com.androidcommand.app.web.controller.SeedStarterMngController"/>    
+       -->
+
 </beans>

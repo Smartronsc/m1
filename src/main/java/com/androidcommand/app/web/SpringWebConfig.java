@@ -17,7 +17,11 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
@@ -38,7 +42,19 @@ public class SpringWebConfig implements WebMvcConfigurer {
         System.out.println("In SpringWebConfig.java: setApplicationContext");
     }
 
-
+    /*
+     *  Tell Spring where to expect to find Views so we don't have to do it in Xml format
+     */
+    
+    @Override
+    public void configureViewResolvers(ViewResolverRegistry registry) {
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+        resolver.setPrefix("/WEB-INF/views/");
+        resolver.setSuffix(".jsp");
+        resolver.setViewClass(JstlView.class);
+        registry.viewResolver(resolver);
+        System.out.println("In SpringWebConfig.java: configureViewResolvers" );
+    }
 
     /* ******************************************************************* */
     /*  GENERAL CONFIGURATION ARTIFACTS                                    */
@@ -54,7 +70,7 @@ public class SpringWebConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/images/**").addResourceLocations("/images/");
         registry.addResourceHandler("/css/**").addResourceLocations("/css/");
         registry.addResourceHandler("/js/**").addResourceLocations("/js/");
-        System.out.println("In SpringWebConfig.java: addResourceHandlers " + registry.toString());
+        System.out.println("In SpringWebConfig.java: addResourceHandlers " );
     }
 
     @Bean
@@ -91,8 +107,6 @@ public class SpringWebConfig implements WebMvcConfigurer {
         return new DateFormatter();
     }
 
-
-
     /* **************************************************************** */
     /*  THYMELEAF-SPECIFIC ARTIFACTS                                    */
     /*  TemplateResolver <- TemplateEngine <- ViewResolver              */
@@ -113,15 +127,8 @@ public class SpringWebConfig implements WebMvcConfigurer {
 
     @Bean
     public SpringTemplateEngine templateEngine(){
-        // SpringTemplateEngine automatically applies SpringStandardDialect and
-        // enables Spring's own MessageSource message resolution mechanisms.
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());
-        // Enabling the SpringEL compiler with Spring 4.2.4 or newer can
-        // speed up execution in most scenarios, but might be incompatible
-        // with specific cases when expressions in one template are reused
-        // across different data types, so this flag is "false" by default
-        // for safer backwards compatibility.
         templateEngine.setEnableSpringELCompiler(true);
         System.out.println("In SpringWebConfig.java: SpringTemplateEngine " + templateEngine.toString());
         return templateEngine;
@@ -134,5 +141,12 @@ public class SpringWebConfig implements WebMvcConfigurer {
         System.out.println("In SpringWebConfig.java: ThymeleafViewResolver " + viewResolver.toString());
         return viewResolver;
     }
+    
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        System.out.println("In SpringWebConfig.java: addViewControllers");
+        registry.addViewController("/").setViewName("/rant.jsp");
+    }
+    
 
 }
