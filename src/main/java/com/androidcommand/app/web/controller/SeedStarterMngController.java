@@ -64,7 +64,7 @@ public class SeedStarterMngController {
     @RequestMapping({"/","/seedstartermng"})
     public String showSeedstarters(final SeedStarter seedStarter) {
         seedStarter.setDatePlanted(Calendar.getInstance().getTime());
-        return "seedstartermng";
+        return "seedstartermng.html";
     }
     
     

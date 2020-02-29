@@ -50,7 +50,7 @@ public class SpringWebConfig implements WebMvcConfigurer {
     public void configureViewResolvers(ViewResolverRegistry registry) {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
         resolver.setPrefix("/WEB-INF/views/");
-        resolver.setSuffix(".jsp");
+        resolver.setSuffix("*.jsp");
         resolver.setViewClass(JstlView.class);
         registry.viewResolver(resolver);
         System.out.println("In SpringWebConfig.java: configureViewResolvers" );
