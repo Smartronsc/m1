@@ -20,7 +20,7 @@ public class RantConfig {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
         messageSource.setBasename("classpath:WEB-INF");
         messageSource.setCacheSeconds(10); //reload messages every 10 seconds
-        System.out.println("In RabtConfig.java for messages " + messageSource.getBasenameSet());
+        System.out.println("In RantConfig.java for messages " + messageSource.getBasenameSet());
         return messageSource;
     } 
 }

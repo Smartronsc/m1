@@ -34,9 +34,7 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer {
          */
         DispatcherServlet servlet = new DispatcherServlet(applicationConfiguration);
         ServletRegistration.Dynamic registration = container.addServlet("rant", servlet);
-  //      ServletRegistration.Dynamic registration = container.addServlet("app", servlet);
         registration.setLoadOnStartup(1);	
-  //      registration.addMapping("/app/*");
         registration.addMapping("/");
         
 //		System.out.println("In MyWebApplicationInitializer onStartup");
