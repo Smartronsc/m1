@@ -14,7 +14,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -26,8 +25,6 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
-import com.androidcommand.app.web.conversion.DateFormatter;
-import com.androidcommand.app.web.conversion.VarietyFormatter;
 
 @Configuration
 @EnableWebMvc
@@ -83,30 +80,6 @@ public class SpringWebConfig implements WebMvcConfigurer {
         return messageSource;
     }
     
-    /*
-     * Add formatter for class {@link thymeleafexamples.stsm.business.entities.Variety}
-     * and {@link java.util.Date} in addition to the one registered by default
-     */
-    @Override
-    public void addFormatters(final FormatterRegistry registry) {
-    /*    super.addFormatters(registry); */
-        registry.addFormatter(varietyFormatter());
-        registry.addFormatter(dateFormatter());
-        System.out.println("In SpringWebConfig.java: addFormatters");
-    }
-
-    @Bean
-    public VarietyFormatter varietyFormatter() {
-        System.out.println("In SpringWebConfig.java: VarietyFormatter");
-        return new VarietyFormatter();
-    }
-
-    @Bean
-    public DateFormatter dateFormatter() {
-        System.out.println("In SpringWebConfig.java: DateFormatter");
-        return new DateFormatter();
-    }
-
     /* **************************************************************** */
     /*  THYMELEAF-SPECIFIC ARTIFACTS                                    */
     /*  TemplateResolver <- TemplateEngine <- ViewResolver              */
