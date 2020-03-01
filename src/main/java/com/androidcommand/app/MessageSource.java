@@ -1,6 +1,6 @@
 package com.androidcommand.app;
 
-public class messageSource {
+public class MessageSource {
 
 	
 }

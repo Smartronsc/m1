@@ -15,5 +15,3 @@ public class SpringRbsApplication {
 		System.out.println("SpringRbsApplication is now running");
     } 
 }
-
-

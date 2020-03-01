@@ -1,10 +1,3 @@
-/*
- * =============================================================================
- *
- *   Copyright (c) 2020, RichardBradleySmith.com All Rights Reserved
- *
- * =============================================================================
- */
 package com.androidcommand.app.business.entities;
 
 
