@@ -20,6 +20,7 @@ public class RantController {
 	@ModelAttribute
     public void addAttributes(Model model) {
         model.addAttribute("msg", "In RantController");
+		System.out.println("In RantController model " + model.asMap());
     }
 	
     public RantController() { }
@@ -27,6 +28,6 @@ public class RantController {
     @RequestMapping(method=RequestMethod.GET)          // only accepts Get requests
     public String post(Model model) {
 		System.out.println("In RantController " + model.asMap());
-        return "redirect:/companies.jsp";
+        return "redirect:/companies/add.jsp";
 	    }
    }

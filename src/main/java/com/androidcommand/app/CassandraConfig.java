@@ -26,7 +26,7 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
         PlainTextAuthProvider sap = new PlainTextAuthProvider("cassandra","cassandra");
         System.out.println("In CassandraConfiguration: sap " + sap.toString());
         cluster.setAuthProvider(sap);
-        cluster.setContactPoints("192.168.1.4");
+        cluster.setContactPoints("192.168.1.2");
         cluster.setPort(9042);
         System.out.println("In CassandraConfiguration: cluster " + cluster.getKeyspaceActions().listIterator().toString());
         return cluster;

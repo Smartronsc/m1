@@ -36,19 +36,5 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer {
         ServletRegistration.Dynamic registration = container.addServlet("rant", servlet);
         registration.setLoadOnStartup(1);	
         registration.addMapping("/");
-        
-//		System.out.println("In MyWebApplicationInitializer onStartup");
-//		System.out.println("Processing MyWebApplicationInitializer-servlet.xml to set the web application context");
-		
-		
-        /*
-        XmlWebApplicationContext dispatcherContext = new XmlWebApplicationContext();
-        dispatcherContext.setConfigLocation("/WEB-INF/MyWebApplicationInitializer-servlet.xml");
-
-        ServletRegistration.Dynamic dispatcher = container.addServlet("dispatcher", new DispatcherServlet(dispatcherContext));
-        dispatcher.setLoadOnStartup(1);
-        dispatcher.addMapping("/");
-        System.out.println("In MyWebApplicationInitializer dispatcher " + dispatcher.toString());
-        */
     }
 }

@@ -1,24 +1,34 @@
-package com.androidcommand.app;
+package com.androidcommand.app.model;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.cassandra.core.CassandraOperations;
+import org.springframework.data.cassandra.core.CassandraTemplate;
 import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
 
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
+import org.springframework.web.servlet.ModelAndView;
 
-import lombok.Data;
+import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.Session;
+import com.datastax.driver.core.querybuilder.QueryBuilder;
+import com.datastax.driver.core.querybuilder.Select;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Table("companies")
 @Getter @Setter
 @Configuration
-@Data
-public class Companies {
-	
-	/*
-	 * form-backing object 
-	 */
+public class CompaniesDAO {
+  	private static final long serialVersionUID = 1L;
+    private static Cluster cluster; 
+	private static Session session; 
+
 
     @PrimaryKeyColumn(name = "company_company", type = PrimaryKeyType.PARTITIONED)
     public String company_company;
@@ -47,7 +57,7 @@ public class Companies {
     private int company_uuid;
     private String company_text;   
 
-	  public Companies(
+	  public CompaniesDAO(
 		  final String company_company,	  
           final String company_userid,
 		  final String company_category,
@@ -101,5 +111,70 @@ public class Companies {
 
 	  }
 
-	  public Companies() {}
-}
+	  public CompaniesDAO() {}
+	  
+	    @Bean
+	    public ModelAndView myCompaniesbean() {
+	    	System.out.println("In CompaniesDAO.java for MyCompaniesBean ");
+		    ModelAndView mav = new ModelAndView();
+		    mav.setViewName("companies.html");
+		    System.out.println("In CompaniesDAO.java for ModelandView " + mav.getViewName());
+			try { 
+				 
+				   cluster = Cluster.builder().withoutJMXReporting().addContactPoints(InetAddress.getByName("192.168.1.2") ).build(); 
+				   
+				   session = cluster.connect("rant"); 
+				 
+				   CassandraOperations cassandraOps = new CassandraTemplate(session); 
+				 
+				   cassandraOps.insert(new CompaniesDAO("name1", "user", "category", "first", "last", "city", "state", "zipcode", "phone", "email",  
+						   "addr1c", "adddr2c", "cityc", "statec", "zipcodec", "phonec", "emailc", "website", 0.0, 0.0, 
+				           0, 0, "pr", 0, "text"));
+				   Select s = QueryBuilder.select().from("Companies"); 
+				   s.where(QueryBuilder.eq("company_company", "name1")); 
+				 
+		           System.out.println("In CompaniesDAO.java for company information: " + cassandraOps.selectOne(s, CompaniesDAO.class).CompanyInformation());
+
+		           cassandraOps.truncate(CompaniesDAO.class);  // empties the table
+				 
+				  } catch (UnknownHostException e) { 
+				   e.printStackTrace(); 
+				  }
+
+	        return mav;
+
+	    }
+
+		public String getCompany() {
+			System.out.println("In CompaniesDAO.java getCompany() " + this.company_company);
+			return this.company_company;
+		}
+	 
+		public void setCompany(String company_company) {
+			System.out.println("In CompaniesDAO.java setCompany() " + company_company);
+			this.company_company = company_company;
+		}
+		
+		public String getUserid() {
+			System.out.println("In CompaniesDAO.java getUserid() " + this.company_userid);
+			return this.company_userid;
+		}
+
+		public void setUserid(String company_userid) {
+			System.out.println("In CompaniesDAO.java setCompany() " + company_userid);
+			this.company_userid = company_userid;
+		}
+		
+		public String getWebsite() {
+			return this.company_websitec;
+		}
+		
+		public void setWebsite(String company_websitec) {
+			this.company_websitec = company_websitec;
+		}
+		
+		public String CompanyInformation() {
+			   System.out.println("In CompaniesDAO.java CompanyInformation() " + this.company_userid);
+			   return this.company_userid;
+			}
+	}

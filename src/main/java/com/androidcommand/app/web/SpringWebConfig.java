@@ -46,7 +46,7 @@ public class SpringWebConfig implements WebMvcConfigurer {
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB-INF/views/");
+        resolver.setPrefix("/WEB-INF/templates/");
         resolver.setSuffix("*.jsp");
         resolver.setViewClass(JstlView.class);
         registry.viewResolver(resolver);
@@ -92,7 +92,7 @@ public class SpringWebConfig implements WebMvcConfigurer {
         templateResolver.setApplicationContext(this.applicationContext);
         System.out.println("In SpringWebConfig.java: applicationContext "  + this.applicationContext);
         templateResolver.setPrefix("/WEB-INF/templates/");
-        templateResolver.setSuffix(".html");
+        templateResolver.setSuffix(".jsp");
         templateResolver.setTemplateMode(TemplateMode.HTML);
         templateResolver.setCacheable(true);
         return templateResolver;
