@@ -18,11 +18,10 @@ import com.datastax.driver.core.Session;
 import com.datastax.driver.core.querybuilder.QueryBuilder;
 import com.datastax.driver.core.querybuilder.Select;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @Table("companies")
-@Getter @Setter
+@Data
 @Configuration
 public class CompaniesDAO {
   	private static final long serialVersionUID = 1L;
@@ -31,8 +30,8 @@ public class CompaniesDAO {
 
 
     @PrimaryKeyColumn(name = "company_company", type = PrimaryKeyType.PARTITIONED)
-    public String company_company;
-    public String company_userid;
+    private String company_company;
+    private String company_userid;
     private String company_category;
     private String company_first;
     private String company_last;
@@ -117,11 +116,11 @@ public class CompaniesDAO {
 	    public ModelAndView myCompaniesbean() {
 	    	System.out.println("In CompaniesDAO.java for MyCompaniesBean ");
 		    ModelAndView mav = new ModelAndView();
-		    mav.setViewName("companies.html");
+		    mav.setViewName("companies.jsp");
 		    System.out.println("In CompaniesDAO.java for ModelandView " + mav.getViewName());
 			try { 
 				 
-				   cluster = Cluster.builder().withoutJMXReporting().addContactPoints(InetAddress.getByName("192.168.1.2") ).build(); 
+				   cluster = Cluster.builder().withoutJMXReporting().addContactPoints(InetAddress.getByName("192.168.1.5") ).build(); 
 				   
 				   session = cluster.connect("rant"); 
 				 
@@ -144,7 +143,8 @@ public class CompaniesDAO {
 	        return mav;
 
 	    }
-
+    
+	/*    @ModelAttribute("company_company") */
 		public String getCompany() {
 			System.out.println("In CompaniesDAO.java getCompany() " + this.company_company);
 			return this.company_company;
@@ -155,6 +155,7 @@ public class CompaniesDAO {
 			this.company_company = company_company;
 		}
 		
+	/*    @ModelAttribute("company_userid") */
 		public String getUserid() {
 			System.out.println("In CompaniesDAO.java getUserid() " + this.company_userid);
 			return this.company_userid;
@@ -166,15 +167,17 @@ public class CompaniesDAO {
 		}
 		
 		public String getWebsite() {
+			System.out.println("In CompaniesDAO.java getWebsite() " + this.company_websitec);
 			return this.company_websitec;
 		}
 		
 		public void setWebsite(String company_websitec) {
+			System.out.println("In CompaniesDAO.java setWebsite() " + company_websitec);
 			this.company_websitec = company_websitec;
 		}
-		
+	
 		public String CompanyInformation() {
 			   System.out.println("In CompaniesDAO.java CompanyInformation() " + this.company_userid);
 			   return this.company_userid;
-			}
+			} 
 	}

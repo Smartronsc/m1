@@ -36,7 +36,7 @@ public class SpringWebConfig implements WebMvcConfigurer {
     public void setApplicationContext(final ApplicationContext applicationContext)
             throws BeansException {
         this.applicationContext = applicationContext;
-        System.out.println("In SpringWebConfig.java: setApplicationContext");
+        System.out.println("In SpringWebConfig.java: setApplicationContext" + this.applicationContext.getBeanDefinitionNames().toString() );
     }
 
     /*

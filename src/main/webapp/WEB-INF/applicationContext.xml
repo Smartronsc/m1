@@ -11,24 +11,27 @@
       <property name = "prefix" value = "/WEB-INF/"/>
       <property name = "suffix" value = ".jsp"/>
    </bean>
-
+    -->
    
    <bean class = "org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
       <property name = "mappings">
-         <props>
-            <prop key = "/seed">SeedStarterMngController</prop>
-         </props>
+      <value>
+          /*/showCompany.jsp=companiesController
+      </value>
+  <!--       <props>
+            <prop key = "/showCompany">companiesController</prop>
+         </props>   -->  
       </property>
    </bean>
-    -->
+
    
     <!-- Application Message Bundle  
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basename" value="classpath:resources/labels_en.properties" />
     </bean>
-
+      -->
   
-   <bean id = "SeedStarterMngController" class = "com.androidcommand.app.web.controller.SeedStarterMngController"/>    
-       -->
+   <bean id = "companiesController" class = "com.androidcommand.app.controller.CompaniesController"/>    
+ 
 
 </beans>

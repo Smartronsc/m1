@@ -12,6 +12,7 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer {
 
 	@Override
     public void onStartup(ServletContext container) throws ServletException {
+
      
 		/*
 		 *  Load Spring web applicationConfiguration container root context RantConfig.class
@@ -36,5 +37,7 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer {
         ServletRegistration.Dynamic registration = container.addServlet("rant", servlet);
         registration.setLoadOnStartup(1);	
         registration.addMapping("/");
+        
+//		System.out.println("In MyWebApplicationInitializer.java: onStartup" + container.getBeanDefinitionNames().toString() );
     }
 }

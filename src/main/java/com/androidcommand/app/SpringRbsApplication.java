@@ -1,8 +1,12 @@
 package com.androidcommand.app;
 
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.androidcommand.app.controller.CompaniesController;
 
 @SpringBootApplication
 @RestController
@@ -18,5 +22,10 @@ public class SpringRbsApplication {
 		SpringApplication.run(SpringRbsApplication.class, args);
 		
 		System.out.println("SpringRbsApplication is now running");
+		
+	    @SuppressWarnings("resource")
+		BeanFactory beanfactory = new ClassPathXmlApplicationContext("applicationContext.xml");
+	    CompaniesController companiesController = (CompaniesController) beanfactory.getBean("CompaniesController");
+	        System.out.println("SpringRbsApplication bean " + companiesController);
     } 
 }

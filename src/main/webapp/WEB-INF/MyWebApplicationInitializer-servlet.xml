@@ -18,9 +18,10 @@
                     
   	<!-- Enables the Spring MVC @Controller programming model -->
 	     <mvc:annotation-driven />
-<!--      
+	     
+<!--      This does not work compaines.jsp gets a 503 because it blows out the application
 <bean id="handlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
   <bean name="/companinesURL.jsp" class="com.androidcommand.app.controller.CompaniesController">
     <property name="Companies" value="companies"/>
-  </bean>  -->
+  </bean>  -->  
 </beans> 
