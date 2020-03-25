@@ -17,10 +17,10 @@
       <property name = "mappings">
       <value>
           /*/showCompany.jsp=companiesController
+          /*/companies.jsp=companiesController
+          /*/home.jsp=homeController
+          /*/rant.jsp=rantController
       </value>
-  <!--       <props>
-            <prop key = "/showCompany">companiesController</prop>
-         </props>   -->  
       </property>
    </bean>
 
@@ -31,7 +31,9 @@
     </bean>
       -->
   
-   <bean id = "companiesController" class = "com.androidcommand.app.controller.CompaniesController"/>    
+   <bean id = "companiesController" class = "com.androidcommand.app.controller.CompaniesController"/>   
+   <bean id = "homeController" class = "com.androidcommand.app.controller.HomeController"/> 
+   <bean id = "rantController" class = "com.androidcommand.app.controller.RantController"/> 
  
 
 </beans>

@@ -17,10 +17,7 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
@@ -37,20 +34,6 @@ public class SpringWebConfig implements WebMvcConfigurer {
             throws BeansException {
         this.applicationContext = applicationContext;
         System.out.println("In SpringWebConfig.java: setApplicationContext" + this.applicationContext.getBeanDefinitionNames().toString() );
-    }
-
-    /*
-     *  Tell Spring where to expect to find Views so we don't have to do it in Xml format
-     */
-    
-    @Override
-    public void configureViewResolvers(ViewResolverRegistry registry) {
-        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/WEB-INF/templates/");
-        resolver.setSuffix("*.jsp");
-        resolver.setViewClass(JstlView.class);
-        registry.viewResolver(resolver);
-        System.out.println("In SpringWebConfig.java: configureViewResolvers" );
     }
 
     /* ******************************************************************* */
@@ -118,7 +101,7 @@ public class SpringWebConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         System.out.println("In SpringWebConfig.java: addViewControllers");
-        registry.addViewController("/").setViewName("/rant.jsp");
+        registry.addViewController("/").setViewName("/addCompany.jsp");
     }
     
 

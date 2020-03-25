@@ -12,7 +12,7 @@
             <img src="../../images/rant!rave.png" alt="Rant!Rave" title="Rant!Rave logo" 
            th:src="@{/images/rant!rave.png}"/>    
     </div>
- <h1>Form</h1>
+ <h1>Start here</h1>
     <form action="#" th:action="@{/companies.jsp}" th:object="${company}" method="post">   
       <p>Company: <input type="text" th:field="*{company}"/></p>
       <p>User Id: <input type="text" th:field="*{userid}"/></p>

@@ -113,11 +113,11 @@ public class CompaniesDAO {
 	  public CompaniesDAO() {}
 	  
 	    @Bean
-	    public ModelAndView myCompaniesbean() {
+	    public void myCompaniesbean() {
 	    	System.out.println("In CompaniesDAO.java for MyCompaniesBean ");
-		    ModelAndView mav = new ModelAndView();
-		    mav.setViewName("companies.jsp");
-		    System.out.println("In CompaniesDAO.java for ModelandView " + mav.getViewName());
+//		    ModelAndView mav = new ModelAndView();
+//		    mav.setViewName("companies.jsp");
+//		    System.out.println("In CompaniesDAO.java for ModelandView " + mav.getViewName());
 			try { 
 				 
 				   cluster = Cluster.builder().withoutJMXReporting().addContactPoints(InetAddress.getByName("192.168.1.5") ).build(); 
@@ -132,19 +132,18 @@ public class CompaniesDAO {
 				   Select s = QueryBuilder.select().from("Companies"); 
 				   s.where(QueryBuilder.eq("company_company", "name1")); 
 				 
-		           System.out.println("In CompaniesDAO.java for company information: " + cassandraOps.selectOne(s, CompaniesDAO.class).CompanyInformation());
+		           System.out.println("In CompaniesDAO.java for Cassandra information: " + cassandraOps.selectOne(s, CompaniesDAO.class).CompanyInformation());
 
-		           cassandraOps.truncate(CompaniesDAO.class);  // empties the table
+//		           cassandraOps.truncate(CompaniesDAO.class);  // empties the table
 				 
 				  } catch (UnknownHostException e) { 
 				   e.printStackTrace(); 
 				  }
-
-	        return mav;
+			return;
+//	        return mav;
 
 	    }
     
-	/*    @ModelAttribute("company_company") */
 		public String getCompany() {
 			System.out.println("In CompaniesDAO.java getCompany() " + this.company_company);
 			return this.company_company;
@@ -155,7 +154,6 @@ public class CompaniesDAO {
 			this.company_company = company_company;
 		}
 		
-	/*    @ModelAttribute("company_userid") */
 		public String getUserid() {
 			System.out.println("In CompaniesDAO.java getUserid() " + this.company_userid);
 			return this.company_userid;

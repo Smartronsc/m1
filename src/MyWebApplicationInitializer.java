@@ -7,6 +7,7 @@ import javax.servlet.ServletRegistration;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 public class MyWebApplicationInitializer implements WebApplicationInitializer {
 
@@ -39,5 +40,8 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer {
         registration.addMapping("/");
         
 //		System.out.println("In MyWebApplicationInitializer.java: onStartup" + container.getBeanDefinitionNames().toString() );
+/*    	final String baseUrl = 
+    			ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
+    	System.out.println("In Companies.java for myotherCompaniesBean " + baseUrl ); */
     }
 }

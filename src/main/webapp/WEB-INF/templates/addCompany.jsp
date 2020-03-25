@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Add user</title>
+    <title>Rant!Rave</title>
     <meta charset="UTF-8">
 </head>
 <body>

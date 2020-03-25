@@ -7,27 +7,36 @@
  */
 package com.androidcommand.app.controller;
 
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.androidcommand.app.model.CompaniesDAO;
+
+@Component
 @Controller
-@RequestMapping("/rant")                               // only accepts things starting with /rant
+@Configuration
+@RequestMapping("/rant")                              
 public class RantController {
     
-	@ModelAttribute
-    public void addAttributes(Model model) {
-        model.addAttribute("msg", "In RantController");
-		System.out.println("In RantController model " + model.asMap());
+    public String addAttributes(@ModelAttribute("company") CompaniesDAO company) {
+    	System.out.println("In RantController.java");  
+	 	return "companies.jsp"; 
     }
 	
     public RantController() { }
     
-    @RequestMapping(method=RequestMethod.GET)          // only accepts Get requests
-    public String post(Model model) {
-		System.out.println("In RantController " + model.asMap());
-        return "redirect:/companies/add.jsp";
+    @PostMapping("/rant")         
+    public String getRantredirect(@ModelAttribute("company") CompaniesDAO company, BindingResult result) {
+    	System.out.println("In RantController.java Binding Result is " + result.getModel().values().toString() );    
+        if (result.hasErrors()) {
+            return "appointmentx/new";
+        }
+    	return "companies"; 
+ /*       return "redirect:/addCompany.jsp"; */
 	    }
    }

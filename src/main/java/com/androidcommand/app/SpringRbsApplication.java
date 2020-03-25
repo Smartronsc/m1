@@ -7,6 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.androidcommand.app.controller.CompaniesController;
+import com.androidcommand.app.controller.RantController;
 
 @SpringBootApplication
 @RestController
@@ -27,5 +28,8 @@ public class SpringRbsApplication {
 		BeanFactory beanfactory = new ClassPathXmlApplicationContext("applicationContext.xml");
 	    CompaniesController companiesController = (CompaniesController) beanfactory.getBean("CompaniesController");
 	        System.out.println("SpringRbsApplication bean " + companiesController);
+	        
+		RantController rantController = (RantController) beanfactory.getBean("RantController");
+	        System.out.println("SpringRbsApplication bean " + rantController);	    
     } 
 }
