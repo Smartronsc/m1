@@ -8,6 +8,6 @@
 	<h1>Result</h1>
     <p th:text="'Company: ' + ${company.company}" />
     <p th:text="'User id: ' + ${company.userid}" />
-    <a href="/companiesURL">Submit another message</a>
+    <a href="/m1/companiesURL">Submit another message</a>
 </body>
 </html>

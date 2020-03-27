@@ -7,11 +7,6 @@
  */
 package com.androidcommand.app.controller;
 
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
@@ -31,7 +26,8 @@ public class CompaniesController {
     @GetMapping("/addCompany")
     public String sendForm(@ModelAttribute("company") CompaniesDAO company) {
 	 	System.out.println("Entry0010 CompanyController.java ");
-    	company.myCompaniesbean();
+    	company.initCassandra();
+    	company.insertCompany();
 //    	Set<Entry<String, Object>> companyMap = company.myCompaniesbean().getModel().entrySet();
 //    	System.out.println("Entry0020 CompanyController.java " + companyMap.isEmpty());
 //		Iterator<Entry<String, Object>> companyMapit = companyMap.iterator();

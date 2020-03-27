@@ -37,6 +37,6 @@ public class RantController {
             return "appointmentx/new";
         }
     	return "companies"; 
- /*       return "redirect:/addCompany.jsp"; */
+ /*       return "redirect:/m1/addCompany.jsp"; */
 	    }
    }

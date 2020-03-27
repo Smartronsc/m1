@@ -11,7 +11,7 @@
 <p th:text="'Company: ' + ${company.company}"></p>
 <p th:text="'UserId: ' + ${company.userid}"></p>	
 <p th:text="'Website: ' + ${company.website}"></p>
-<a href="/addCompany.jsp">Submit another message</a>
+<a href="/m1/addCompany.jsp">Submit another message</a>
 
 </body>
 </html>

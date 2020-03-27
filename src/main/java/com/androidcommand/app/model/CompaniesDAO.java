@@ -2,6 +2,7 @@ package com.androidcommand.app.model;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.UUID;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,9 +12,11 @@ import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
 
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
-import org.springframework.web.servlet.ModelAndView;
 
+import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.Cluster;
+import com.datastax.driver.core.PreparedStatement;
+import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Session;
 import com.datastax.driver.core.querybuilder.QueryBuilder;
 import com.datastax.driver.core.querybuilder.Select;
@@ -27,6 +30,7 @@ public class CompaniesDAO {
   	private static final long serialVersionUID = 1L;
     private static Cluster cluster; 
 	private static Session session; 
+//	private CassandraOperations cassandraOps;
 
 
     @PrimaryKeyColumn(name = "company_company", type = PrimaryKeyType.PARTITIONED)
@@ -113,37 +117,54 @@ public class CompaniesDAO {
 	  public CompaniesDAO() {}
 	  
 	    @Bean
-	    public void myCompaniesbean() {
-	    	System.out.println("In CompaniesDAO.java for MyCompaniesBean ");
-//		    ModelAndView mav = new ModelAndView();
-//		    mav.setViewName("companies.jsp");
-//		    System.out.println("In CompaniesDAO.java for ModelandView " + mav.getViewName());
+	    public void initCassandra() {
+	    	System.out.println("In CompaniesDAO.java for initCassandra");
 			try { 
-				 
 				   cluster = Cluster.builder().withoutJMXReporting().addContactPoints(InetAddress.getByName("192.168.1.5") ).build(); 
-				   
 				   session = cluster.connect("rant"); 
-				 
+				   
+				   PreparedStatement preparedStatement = session.prepare("insert into companies (company_company, company_uuid) values (?, ?)");
+				   BoundStatement boundStatement = preparedStatement.bind("RBS", randomUUID()); 
+						ResultSet rs = session.execute(boundStatement);
+						System.out.println(rs);
+						
 				   CassandraOperations cassandraOps = new CassandraTemplate(session); 
-				 
+/*				 
 				   cassandraOps.insert(new CompaniesDAO("name1", "user", "category", "first", "last", "city", "state", "zipcode", "phone", "email",  
 						   "addr1c", "adddr2c", "cityc", "statec", "zipcodec", "phonec", "emailc", "website", 0.0, 0.0, 
 				           0, 0, "pr", 0, "text"));
-				   Select s = QueryBuilder.select().from("Companies"); 
-				   s.where(QueryBuilder.eq("company_company", "name1")); 
-				 
-		           System.out.println("In CompaniesDAO.java for Cassandra information: " + cassandraOps.selectOne(s, CompaniesDAO.class).CompanyInformation());
+				   Select s = QueryBuilder.select().from("Companies");
+  				   s.where(QueryBuilder.eq("company_company", "name1")); 
+				   LOGGER.info(cassandraOps.selectOne(Query.query(Criteria.where("id").is(jonDoe.getId())), Person.class).getId());
+*/				 
+//		           System.out.println("In CompaniesDAO.java for Cassandra information: " + cassandraOps.selectOne(s, CompaniesDAO.class).CompanyInformation()); 
 
 //		           cassandraOps.truncate(CompaniesDAO.class);  // empties the table
+		           
+		           session.close();
+		           cluster.close();
 				 
 				  } catch (UnknownHostException e) { 
 				   e.printStackTrace(); 
 				  }
+			
+				
 			return;
-//	        return mav;
+	    }    
+	    
 
+
+		@Bean
+	    public void insertCompany() {
+	    	System.out.println("In CompaniesDAO.java for insetCompany");
+//            cassandraOps.insert(new CompaniesDAO("name1", "user", "category", "first", "last", "city", "state", "zipcode", "phone", "email",  
+//				"addr1c", "adddr2c", "cityc", "statec", "zipcodec", "phonec", "emailc", "website", 0.0, 0.0, 0, 0, "pr", 0, "text"));
+//			Select s = QueryBuilder.select().from("Companies"); 
+//			s.where(QueryBuilder.eq("company_company", "name1")); 			 
+		    System.out.println("In CompaniesDAO.java for insertCompany: ");
+			return;
 	    }
-    
+	    
 		public String getCompany() {
 			System.out.println("In CompaniesDAO.java getCompany() " + this.company_company);
 			return this.company_company;
@@ -173,7 +194,11 @@ public class CompaniesDAO {
 			System.out.println("In CompaniesDAO.java setWebsite() " + company_websitec);
 			this.company_websitec = company_websitec;
 		}
-	
+		public static UUID randomUUID() {
+			   System.out.println("In CompaniesDAO.java setUUID() ");
+			return UUID.randomUUID();
+			} 
+		
 		public String CompanyInformation() {
 			   System.out.println("In CompaniesDAO.java CompanyInformation() " + this.company_userid);
 			   return this.company_userid;
