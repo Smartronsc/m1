@@ -20,8 +20,8 @@ public class Companies {
 	 * form-backing object 
 	 */
 
-    @PrimaryKeyColumn(name = "company_company", type = PrimaryKeyType.PARTITIONED)
-    public String company_company;
+    @PrimaryKeyColumn(name = "company_name", type = PrimaryKeyType.PARTITIONED)
+    public String company_name;
     public String company_userid;
     private String company_category;
     private String company_first;
@@ -36,6 +36,7 @@ public class Companies {
     private String company_cityc;
     private String company_statec; 
     private String company_zipcodec;
+    private String company_country;
     private String company_phonec;
     private String company_emailc;
     private String company_websitec;
@@ -48,7 +49,7 @@ public class Companies {
     private String company_text;   
 
 	  public Companies(
-		  final String company_company,	  
+		  final String company_name,	  
           final String company_userid,
 		  final String company_category,
 		  final String company_first, 
@@ -56,6 +57,7 @@ public class Companies {
 	      final String company_city,
 	      final String company_state,
 	      final String company_zipcode, 
+	      final String company_country,
 	      final String company_phone,
 	      final String company_email,
 	      final String company_addr1c,
@@ -73,7 +75,7 @@ public class Companies {
 	      final String company_pr,
 	      final int company_uuid,
 	      final String company_text) {  
-	    this.company_company = company_company;
+	    this.company_name = company_name;
 	    this.company_userid = company_userid;
 	    this.company_category = company_category;
 	    this.company_first = company_first;
@@ -88,6 +90,7 @@ public class Companies {
 	    this.company_cityc = company_cityc;
 	    this.company_statec = company_statec;
 	    this.company_zipcodec = company_zipcodec;
+	    this.company_country = company_country;
 	    this.company_phonec = company_phonec;
 	    this.company_emailc = company_emailc;
  	    this.company_websitec = company_websitec;

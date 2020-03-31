@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.androidcommand.app.model.CompaniesDAO;
 
@@ -24,22 +25,29 @@ import com.androidcommand.app.model.CompaniesDAO;
 public class CompaniesController {
 
     @GetMapping("/addCompany")
-    public String sendForm(@ModelAttribute("company") CompaniesDAO company) {
-	 	System.out.println("Entry0010 CompanyController.java ");
-    	company.initCassandra();
-    	company.insertCompany();
+    public String
+    sendForm(@ModelAttribute("company") CompaniesDAO company) {
+	 	System.out.println("Entry0010 CompanyController.java for /addCompany ");
+    	company.selectCompany();
+//      ModelAndView mav = new ModelAndView();
+//      mav. addObject("company",company.getCompany());
+//      mav.setViewName("addCompany");
+//    	company.initCassandra();
+
+    	
 //    	Set<Entry<String, Object>> companyMap = company.myCompaniesbean().getModel().entrySet();
 //    	System.out.println("Entry0020 CompanyController.java " + companyMap.isEmpty());
 //		Iterator<Entry<String, Object>> companyMapit = companyMap.iterator();
 //		System.out.println("Entry0030 CompanyController.java ");
 //		while (companyMapit.hasNext()) {
-			System.out.println("Entry0040 CompanyController.java ");
+//			System.out.println("Entry0060 CompanyController.java ");
 //		 	Map.Entry<String, Object> companyMapme= (Map.Entry<String, Object>)companyMapit.next();
 //		 	String companyKey = companyMapme.getKey();
-//		 	Object company_company = companyMapme.getValue(); 
-//		 	System.out.println("In CompanyController.java Company is " + companyKey + ": " + company_company);
+//		 	Object company_name = companyMapme.getValue(); 
+//		 	System.out.println("In CompanyController.java Company is " + companyKey + ": " + company_name);
 //		}
-        return "addCompany";
+      return "addCompany";
+//    return mav;
     }
 
     @PostMapping("/showCompany")
@@ -52,7 +60,7 @@ public class CompaniesController {
     }
 
 	/*	@GetMapping("/companies")
-	public ModelAndView handleRequest(@ModelAttribute("companies") CompaniesDAO company_company ) {
+	public ModelAndView handleRequest(@ModelAttribute("companies") CompaniesDAO company_name ) {
 		CompaniesDAO company = new CompaniesDAO();
 		company.setCompany("Tear Drop");
 		company.setUserid("Penny Lane");

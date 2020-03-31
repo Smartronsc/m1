@@ -7,7 +7,7 @@
 <body>
 	<h1>Post</h1>
     <form action="#" th:action="@{/companies}" th:object="${companies}" method="post">
-    	<p>Id: <input type="text" th:field="*{company_company}" /></p>
+    	<p>Id: <input type="text" th:field="*{company_name}" /></p>
         <p>Message: <input type="text" th:field="*{company_websitec}" /></p>
         <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
     </form>
