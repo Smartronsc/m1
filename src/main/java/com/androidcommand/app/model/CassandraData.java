@@ -36,7 +36,7 @@ public class CassandraData {
    * @return A new Cassandra session
    */
   protected static Session createSession() {
-    Cluster cluster = Cluster.builder().addContactPoint("192.168.1.5").build();
+    Cluster cluster = Cluster.builder().addContactPoint("192.168.1.4").build();
     return cluster.connect("rant");  // this is the keyspace
   }
 }

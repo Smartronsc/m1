@@ -11,29 +11,29 @@
       <property name = "prefix" value = "/WEB-INF/"/>
       <property name = "suffix" value = ".jsp"/>
    </bean>
-    -->
+   -->
    
    <bean class = "org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
       <property name = "mappings">
       <value>
-          /*/showCompany.jsp=companiesController
-          /*/companies.jsp=companiesController
-          /*/home.jsp=homeController
-          /*/rant.jsp=rantController
+          /*/showCompany.jsp=CompaniesController
+          /*/companies.jsp=CompaniesController
+          /*/home.jsp=HomeController
+          /*/rant.jsp=RantController
       </value>
       </property>
    </bean>
-
+ 
    
+
+  
+   <bean id = "CompaniesController" class = "com.androidcommand.app.CompaniesController"/> 
+   <bean id = "HomeController"      class = "com.androidcommand.app.HomeController"/> 
+   <bean id = "RantController"      class = "com.androidcommand.app.RantController"/> 
+
     <!-- Application Message Bundle  
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basename" value="classpath:resources/labels_en.properties" />
     </bean>
       -->
-  
-   <bean id = "companiesController" class = "com.androidcommand.app.controller.CompaniesController"/>   
-   <bean id = "homeController" class = "com.androidcommand.app.controller.HomeController"/> 
-   <bean id = "rantController" class = "com.androidcommand.app.controller.RantController"/> 
- 
-
 </beans>

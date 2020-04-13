@@ -1,4 +1,4 @@
-package com.androidcommand.app;
+package com.androidcommand.app.model;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.data.cassandra.core.CassandraOperations;
 import org.springframework.data.cassandra.core.CassandraTemplate;
 
+import com.androidcommand.app.Companies;
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Session;
 import com.datastax.driver.core.querybuilder.QueryBuilder;
@@ -39,13 +40,13 @@ public class CompaniesServlet extends HttpServlet {
 			 
 			   CassandraOperations cassandraOps = new CassandraTemplate(session); 
 			 
-			   cassandraOps.insert(new Companies("name1", "user", "category", "first", "last", "city", "state", "zipcode", "phone", "email",  
-					   "addr1c", "adddr2c", "cityc", "statec", "zipcodec", "phonec", "emailc", "website", 0.0, 0.0, 
+			   cassandraOps.insert(new Companies("name1", "user", "category", "first", "last", "city", "state", "zipcode","country", "phone",  
+					   "email", "addr1c", "adddr2c", "cityc", "statec", "zipcodec", "phonec", "emailc", "website", 0.0, 0.0, 
 			           0, 0, "pr", 0, "text"));
 			   Select s = QueryBuilder.select().from("Companies"); 
 			   s.where(QueryBuilder.eq("company_company", "name1")); 
 			 
-	           System.out.println("in CompaniesServlet " + cassandraOps.selectOne(s, Companies.class).CompanyInformation());
+	           System.out.println("in CompaniesServlet " + cassandraOps.selectOne(s, CompaniesDAO.class).CompanyInformation());
 	           getServletContext().getRequestDispatcher("/companies.html").forward(request,response);
 
 	           cassandraOps.truncate(Companies.class);  // empties the table

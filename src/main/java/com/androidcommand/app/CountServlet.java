@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,7 +15,6 @@ import java.io.IOException;
  * Copyright 2019, 2020 RichardBradleySmith.com
  */
 @Controller
-@ControllerAdvice
 public class CountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

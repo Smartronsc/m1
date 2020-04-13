@@ -14,6 +14,7 @@ import com.datastax.driver.core.PlainTextAuthProvider;
 
 
 @Configuration
+/* @ComponentScan(basePackages = {"com.androidcommand.app"}) */
 @EnableCassandraRepositories(basePackages = {"com.androidcommand.app"})
 
 public class CassandraConfig extends AbstractCassandraConfiguration {
@@ -29,7 +30,7 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
         PlainTextAuthProvider sap = new PlainTextAuthProvider("cassandra","cassandra");
         System.out.println("In CassandraConfiguration: sap " + sap.toString());
         cluster.setAuthProvider(sap);
-        cluster.setContactPoints("192.168.1.5");
+        cluster.setContactPoints("192.168.1.4");
         cluster.setPort(9042);
         System.out.println("In CassandraConfiguration: cluster " + cluster.getKeyspaceActions().listIterator().toString());
 		Iterator<KeyspaceActions> clusterKSAit = cluster.getKeyspaceActions().listIterator();

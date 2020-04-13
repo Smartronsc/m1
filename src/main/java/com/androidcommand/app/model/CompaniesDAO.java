@@ -6,8 +6,6 @@ import java.util.UUID;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.cassandra.core.CassandraOperations;
-import org.springframework.data.cassandra.core.CassandraTemplate;
 import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
 
 import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
@@ -15,16 +13,12 @@ import org.springframework.data.cassandra.core.mapping.Table;
 
 import com.datastax.driver.core.BoundStatement;
 import com.datastax.driver.core.Cluster;
-import com.datastax.driver.core.ColumnDefinitions;
 import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.datastax.driver.core.Session;
-import com.datastax.driver.core.querybuilder.QueryBuilder;
-import com.datastax.driver.core.querybuilder.Select;
 
 import lombok.Data;
-import com.androidcommand.app.model.SelectCompanyInformation;
 
 import com.androidcommand.app.model.CassandraData;
 
@@ -128,7 +122,7 @@ public class CompaniesDAO extends CassandraData {
 	    public void initCassandra() {
 	    	System.out.println("In CompaniesDAO.java for initCassandra");
 			try { 
-				   cluster = Cluster.builder().withoutJMXReporting().addContactPoints(InetAddress.getByName("192.168.1.5") ).build(); 
+				   cluster = Cluster.builder().withoutJMXReporting().addContactPoints(InetAddress.getByName("192.168.1.4") ).build(); 
 				   session = cluster.connect("rant"); 
 				   
 //				   PreparedStatement preparedStatement = session.prepare("insert into companies (company_country, company_name) values (?, ?)");
@@ -164,7 +158,7 @@ public class CompaniesDAO extends CassandraData {
 	    public void insertCompany() {
 	    	System.out.println("CompaniesDAO.java for insertCompany");
 			try { 		
-			   cluster = Cluster.builder().withoutJMXReporting().addContactPoints(InetAddress.getByName("192.168.1.5") ).build(); 
+			   cluster = Cluster.builder().withoutJMXReporting().addContactPoints(InetAddress.getByName("192.168.1.4") ).build(); 
 			   session = cluster.connect("rant"); 
 			   PreparedStatement preparedStatement = session.prepare("insert into companies (company_country, company_name) values (?, ?)");
 //			   BoundStatement boundStatement = preparedStatement.bind("United States", randomUUID());
@@ -183,7 +177,7 @@ public class CompaniesDAO extends CassandraData {
 			String companyName = "None"; 
 	    	System.out.println("Entry0030 CompaniesDAO.java for selectCompany");
 //			try { 		
-//			   cluster = Cluster.builder().withoutJMXReporting().addContactPoints(InetAddress.getByName("192.168.1.5") ).build(); 
+//			   cluster = Cluster.builder().withoutJMXReporting().addContactPoints(InetAddress.getByName("192.168.1.4") ).build(); 
 //			   session = cluster.connect("rant"); 
 //			   final String query = "select * from companies where company_country = " + company_country;
 //			   final String query = "select * from companies";

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Rant!Rave</title>
+</head>
+<body>
+   <form action="#" th:action="@{/companies}" th:object="${Companies}" method="post">
+    <div>
+      <img src="../../images/rantlogo.png" alt="Rant logo" title="Rant logo" 
+           th:src="@{/images/rantlogo.png}"/>
+            <img src="../../images/rant!rave.png" alt="Rant!Rave" title="Rant!Rave logo" 
+           th:src="@{/images/rant!rave.png}"/>
+    </div>
+    
+<p th:text="${msg}">">We've heard great things about you!</p>
+<p th:text="${#request.getParameter('test')}" th:unless="${#request.getParameter('test') == null}">Test</p>
+
+  </form>
+  
+ 
+  </body>
+</html>
