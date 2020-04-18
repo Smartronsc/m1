@@ -21,6 +21,7 @@ public class Companies {
 	 */
 
     @PrimaryKeyColumn(name = "company_name", type = PrimaryKeyType.PARTITIONED)
+    public String company_function;
     public String company_name;
     public String company_userid;
     private String company_category;
@@ -48,7 +49,7 @@ public class Companies {
     private int company_uuid;
     private String company_text;   
 
-	  public Companies(
+	  public Companies(		  
 		  final String company_name,	  
           final String company_userid,
 		  final String company_category,

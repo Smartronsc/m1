@@ -50,11 +50,12 @@ public class CompaniesController {
     }
 
     @PostMapping("/showCompany")
-    public String processForm(@ModelAttribute("company") CompaniesDAO company, BindingResult result) {
-		System.out.println("In CompanyController.java Binding Result is " + result.getModel().values().toString() );    	
-        if (result.hasErrors()) {
-            return "appointments/new";
-        }
+    public String processForm(@ModelAttribute("company") CompaniesDAO company, String company_name, String company_function) {
+    	System.out.println("Entry0020 CompanyController.java Binding Result is " + company.getCompany() ); 
+    	System.out.println("Entry0030 CompanyController.java Binding Result is " + company.getFunction() ); 
+        company.setCompany("Brad");
+//    public String processForm(@ModelAttribute("company") CompaniesDAO company, BindingResult result) {
+//		System.out.println("Entry0020 CompanyController.java Binding Result is " + result.getModel().values().toString() );    	
         return "showCompany";
     }
 

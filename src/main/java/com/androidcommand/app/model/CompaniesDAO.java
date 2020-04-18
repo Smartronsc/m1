@@ -29,6 +29,7 @@ public class CompaniesDAO extends CassandraData {
   	private static final long serialVersionUID = 1L;
     private static Cluster cluster; 
 	private static Session session; 
+    private String company_function;
 //	private CassandraOperations cassandraOps;
 
 
@@ -61,6 +62,7 @@ public class CompaniesDAO extends CassandraData {
     private String company_text;   
 
 	  public CompaniesDAO(
+		  final String company_function,	  
 		  final String company_name,	  
           final String company_userid,
 		  final String company_category,
@@ -207,6 +209,17 @@ public class CompaniesDAO extends CassandraData {
 //				  }
 			return;
 	    }
+		
+		public String getFunction() {
+			System.out.println("In CompaniesDAO.java getFuction() " + this.company_function);
+			return this.company_function;
+		}
+	 
+		public void setFunction(String company_function) {
+			System.out.println("In CompaniesDAO.java setFunction() " + company_function);
+			this.company_function = company_function;
+		}
+		
 	    
 		public String getCompany() {
 			System.out.println("In CompaniesDAO.java getCompany() " + this.company_name);

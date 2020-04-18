@@ -26,8 +26,9 @@
  
   <form action="#" th:action="@{/showCompany.jsp}" th:object="${company}" method="post">
     <div class=Outterform>
-     <input type="text" th:field="*{company}"><br>
-     <input type="submit" value="Submit"/> <input type="reset" value="Reset"> 
+     <input type="text" id="comapany" name="company" th:field="*{company}">
+     <input type="text" id="function" name="function" th:field="*{function}"><br>
+     <input type="submit" value="Submit"/>
     </div>
   </form>
   </main>
