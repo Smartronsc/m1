@@ -2,6 +2,9 @@ package com.androidcommand.app.model;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.context.annotation.Bean;
@@ -29,7 +32,7 @@ public class CompaniesDAO extends CassandraData {
   	private static final long serialVersionUID = 1L;
     private static Cluster cluster; 
 	private static Session session; 
-    private String company_function;
+    private List<String> company_functionlist;
 //	private CassandraOperations cassandraOps;
 
 
@@ -61,8 +64,7 @@ public class CompaniesDAO extends CassandraData {
     private int company_uuid;
     private String company_text;   
 
-	  public CompaniesDAO(
-		  final String company_function,	  
+	  public CompaniesDAO(	  
 		  final String company_name,	  
           final String company_userid,
 		  final String company_category,
@@ -177,7 +179,7 @@ public class CompaniesDAO extends CassandraData {
 		@Bean
 	    public void selectCompany() {
 			String companyName = "None"; 
-	    	System.out.println("Entry0030 CompaniesDAO.java for selectCompany");
+	    	System.out.println("Entry0020 CompaniesDAO.java for selectCompany");
 //			try { 		
 //			   cluster = Cluster.builder().withoutJMXReporting().addContactPoints(InetAddress.getByName("192.168.1.4") ).build(); 
 //			   session = cluster.connect("rant"); 
@@ -210,24 +212,15 @@ public class CompaniesDAO extends CassandraData {
 			return;
 	    }
 		
-		public String getFunction() {
-			System.out.println("In CompaniesDAO.java getFuction() " + this.company_function);
-			return this.company_function;
-		}
-	 
-		public void setFunction(String company_function) {
-			System.out.println("In CompaniesDAO.java setFunction() " + company_function);
-			this.company_function = company_function;
-		}
-		
+
 	    
 		public String getCompany() {
-			System.out.println("In CompaniesDAO.java getCompany() " + this.company_name);
+			System.out.println("Entry0030 CompaniesDAO.java getCompany() " + this.company_name);
 			return this.company_name;
 		}
 	 
 		public void setCompany(String company_name) {
-			System.out.println("In CompaniesDAO.java setCompany() " + company_name);
+			System.out.println("Entry0040 CompaniesDAO.java setCompany() " + company_name);
 			this.company_name = company_name;
 		}
 		
@@ -266,8 +259,47 @@ public class CompaniesDAO extends CassandraData {
 			return UUID.randomUUID();
 			} 
 		
-		public String CompanyInformation() {
-			   System.out.println("In CompaniesDAO.java CompanyInformation() " + this.company_userid);
-			   return this.company_userid;
+		public List<String> getFunctionlist() {
+			   System.out.println("Entry0010 CompaniesDAO.java getFunctionlist) ");
+			   return this.company_functionlist;
 			} 
+		
+		public void setFunctionlist(List<String> company_functionlist) {
+			   System.out.println("Entry0015 CompaniesDAO.java setFunctionlist() " + company_functionlist.get(0).toString());
+			   ArrayList<String> company_functions = new ArrayList<String>();
+			   for(int i = 0; i < company_functionlist.size(); i++) {
+					System.out.println("Entry0017 CompaniesDAO.java setFuctions() " + company_functionlist.get(i).toString() );
+			        company_functions.add(company_functionlist.get(i) );
+			   }    
+			   this.company_functionlist = company_functionlist;
+			} 
+		
+		public ArrayList<String> getFunctions() {
+			System.out.println("Entry0060 CompaniesDAO.java getFuctions() ");
+			ArrayList<String> company_functions = new ArrayList<String>();
+			for(int i = 0; i < company_functionlist.size(); i++) {
+				System.out.println("Entry0065 CompaniesDAO.java getFuctions() " + this.company_functionlist.get(i).toString() );
+		        company_functions.add(company_functionlist.get(i).toString() );
+		    }
+			return company_functions;
+		}
+	 
+		public void setFunctions(ArrayList<String> company_functions) {
+			System.out.println("Entry0010 CompaniesDAO.java setFunctions() " + company_functions);
+			for(int i = 0; i < company_functions.size(); i++) {
+				System.out.println("Entry0067 CompaniesDAO.java setFuctions() " + company_functions.get(i).toString() );
+		        company_functions.add(company_functions.get(i) );
+			}   
+			company_functions = company_functions;
+		}
+	
+		public String CompanyInformation() {
+		    System.out.println("In CompaniesDAO.java CompanyInformation() " + this.company_userid);
+		    return this.company_userid;
+		} 
+
+		
 	}
+
+
+

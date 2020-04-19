@@ -7,10 +7,15 @@
  */
 package com.androidcommand.app.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,11 +30,15 @@ public class CompaniesController {
 
     @GetMapping("/addCompany")
     public String
-    sendForm(@ModelAttribute("company") CompaniesDAO company) {
-	 	System.out.println("Entry0010 CompanyController.java for /addCompany ");
-    	company.selectCompany();
+    sendForm(@ModelAttribute("company") CompaniesDAO company, BindingResult result, Model model){
+	 	System.out.println("Entry0010 CompanyController.java before showing /addCompany ");
+	 	List<String> company_functionlist = Arrays.asList("Find", "Add", "Update", "Delete");
+	 	company.setFunctionlist(company_functionlist);
+    	ArrayList<String> functions = company.getFunctions();
+	 	System.out.println("Entry0020 CompanyController.java for /addCompany " + company.getFunctions() );
+	 	company.selectCompany();
 //      ModelAndView mav = new ModelAndView();
-//      mav. addObject("company",company.getCompany());
+        model.addAttribute("functions",functions);
 //      mav.setViewName("addCompany");
 //    	company.initCassandra();
 
@@ -51,8 +60,8 @@ public class CompaniesController {
 
     @PostMapping("/showCompany")
     public String processForm(@ModelAttribute("company") CompaniesDAO company, String company_name, String company_function) {
-    	System.out.println("Entry0020 CompanyController.java Binding Result is " + company.getCompany() ); 
-    	System.out.println("Entry0030 CompanyController.java Binding Result is " + company.getFunction() ); 
+    	System.out.println("Entry0020 CompanyController.java for /showCOmpany " + company.getCompany() ); 
+    	System.out.println("Entry0030 CompanyController.java for /showCompany " + company.getFunctions() ); 
         company.setCompany("Brad");
 //    public String processForm(@ModelAttribute("company") CompaniesDAO company, BindingResult result) {
 //		System.out.println("Entry0020 CompanyController.java Binding Result is " + result.getModel().values().toString() );    	

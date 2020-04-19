@@ -27,7 +27,11 @@
   <form action="#" th:action="@{/showCompany.jsp}" th:object="${company}" method="post">
     <div class=Outterform>
      <input type="text" id="comapany" name="company" th:field="*{company}">
-     <input type="text" id="function" name="function" th:field="*{function}"><br>
+ <!-- <input type="text" id="functions" name="functions" th:field="*{functions}">  -->
+     <select  id="functions" name="functions" th:field="*{functions}" >
+      <option value="">Select function</option>
+      <option th:each="functions : ${functions}" th:value="${functions}" th:text="${functions}"/>
+     </select>
      <input type="submit" value="Submit"/>
     </div>
   </form>
@@ -41,18 +45,5 @@
     <!-- Show a spinner or placeholders for content -->
   </div>
 
-  <script src="app.js" async></script>
-  <script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js').then(function(registration) {
-      // Registration was successful
-      console.log('ServiceWorker registration successful with scope: ', registration.scope);
-    }).catch(function(err) {
-      // registration failed :(
-      console.log('ServiceWorker registration failed: ', err);
-    });
-  }
-  </script>
-
-</body>
+ </body>
 </html>
