@@ -21,15 +21,15 @@ public class FunctionList implements Serializable {
 	}
 	 
 	public static ArrayList<String> getInstance(CompaniesDAO company) {
-		System.out.println("Entry0020 FunctionList.java getInstance() ");
-		System.out.println("Entry0030 FunctionList.java setFunctions() " );
-		List<String> company_functionlist = Arrays.asList("Find", "Add", "Update", "Delete");
+//		System.out.println("Entry0020 FunctionList.java getInstance() ");
+//		System.out.println("Entry0030 FunctionList.java setFunctions() " );
+		List<String> company_functionlist = Arrays.asList("Add", "Update", "Delete", "Find");
 	    ArrayList<String> company_functions = new ArrayList<String>();
 	    for(int i = 0; i < company_functionlist.size(); i++) {
-		   System.out.println("Entry0040 FunctionList.java setFunctions() " + company_functionlist.get(i).toString() );
+//		   System.out.println("Entry0040 FunctionList.java setFunctions() " + company_functionlist.get(i).toString() );
 	       company_functions.add(company_functionlist.get(i) );
 	    }
-		System.out.println("Entry0045 FunctionList.java setFunctions() " + company_functions.toString());
+//		System.out.println("Entry0045 FunctionList.java setFunctions() " + company_functions.toString());
 	    company.setFunctions(company_functions);
 	    return FunctionListHolder.INSTANCE;
 	}
@@ -39,12 +39,13 @@ public class FunctionList implements Serializable {
 	}
 	
 	public void setCompayfunctions(ArrayList<String> company_functions) {
-		System.out.println("Entry0050 FunctionList.java setCompanyfunctions() ");
+//		System.out.println("Entry0050 FunctionList.java setCompanyfunctions() ");
+		if (getCompayfunctions().isEmpty()) {  return; }
 		this.company_functions = company_functions;
 	}
 	
 	public ArrayList<String> getCompayfunctions() {
-		System.out.println("Entry0060 FunctionList.java getCompanyfunctions() ");
+//		System.out.println("Entry0060 FunctionList.java getCompanyfunctions() ");
 		return this.company_functions;
 	}
 }

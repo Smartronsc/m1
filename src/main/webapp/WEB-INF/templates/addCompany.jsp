@@ -6,9 +6,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="stylesheet" type="text/css" href="styles/inline.css">
     <link rel="stylesheet" type="text/css" media="all" href="css/rant.css" th:href="@{css/rant.css}"/>
+    <link rel="icon" type="images/ico" th:href="@{images/favicon.ico}"/>
   </head>
   <body>
       <div class=Outterform>
@@ -21,7 +20,7 @@
 
       <input type="text" id="comapany" name="company" th:field="*{company}">
       <select  id="functions" name="functions" th:field="*{functions}" >
-       <option value="">Select function</option>
+       <option value="">Functions</option>
        <option th:each="functions : ${functions}" th:value="${functions}" th:text="${functions}"/>
       </select>
       <input type="submit" value="Submit"/>
