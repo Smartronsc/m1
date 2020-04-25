@@ -22,6 +22,7 @@ import com.datastax.driver.core.Session;
 
 import lombok.Data;
 
+import com.androidcommand.app.business.services.SelectCompanyCompanies;
 import com.androidcommand.app.model.CassandraData;
 
 @Table("companies")
@@ -178,40 +179,20 @@ public class CompaniesDAO extends CassandraData {
 	    public void selectCompany() {
 			String companyName = "None"; 
 	    	System.out.println("Entry0020 CompaniesDAO.java for selectCompany");
-//			try { 		
-//			   cluster = Cluster.builder().withoutJMXReporting().addContactPoints(InetAddress.getByName("192.168.1.4") ).build(); 
-//			   session = cluster.connect("rant"); 
-//			   final String query = "select * from companies where company_country = " + company_country;
-//			   final String query = "select * from companies";
-//			   ResultSet results = CassandraData.getSession().execute(query);
-			   PreparedStatement preparedStatement = CassandraData.getSession().prepare("select * from companies where company_country = ?");
-			   BoundStatement boundStatement = preparedStatement.bind("United States"); 
-			   CassandraData.getSession().execute(boundStatement);
-			   ResultSet results = CassandraData.getSession().execute(boundStatement);
 
-//	    	   company_country = "United States";
-//			   String selectCompanyInformation = "SELECT * FROM companies WHERE company_country = ?";
-//			   PreparedStatement preparedCompanyInformation = SelectCompanyInformation.preparedCompanyInformation(selectCompanyInformation);
-//			   BoundStatement boundCompanyInformation = preparedCompanyInformation.bind(company_country);
-//			   ResultSet results = CassandraData.getSession().execute(boundCompanyInformation);
+	    	String selectCompanyCompanies = "SELECT * FROM rant.companies WHERE company_name = ?";
+	    	PreparedStatement preparedCompanyCompanies = SelectCompanyCompanies.preparedCompanyCompanies(selectCompanyCompanies);
+	    	BoundStatement boundCompanyCompanies = preparedCompanyCompanies.bind(company_name);
+			ResultSet results = CassandraData.getSession().execute(boundCompanyCompanies);
 
-//			   String selectCompanyInformation = "SELECT * FROM companies";
-//			   ResultSet results = CassandraData.getSession().execute(selectCompanyInformation);
-			   for(Row row : results) {
-				   companyName = row.getString("company_name");
-				   System.out.println("Entry0040 CompanesDAO.java " + companyName);
-				   setCompany(companyName);
-			   } 
-//	           session.close();
-//	           cluster.close();
-//			  } catch (UnknownHostException e) { 
-//				   e.printStackTrace(); 
-//				  }
+			for(Row row : results) {
+			   companyName = row.getString("company_name");
+			   System.out.println("Entry0040 CompanesDAO.java " + companyName);
+			   setCompany(companyName);
+			} 
 			return;
 	    }
 		
-
-	    
 		public String getCompany() {
 //			System.out.println("Entry0030 CompaniesDAO.java getCompany() " + this.company_name);
 			return this.company_name;

@@ -3,7 +3,6 @@ package com.androidcommand.app.model;
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.Session;
 /**
- * 
  * This is a Singleton class that holds 1 Cassandra session that all requests will share.
  * It has 1 public method to return that session.
  */
@@ -11,7 +10,7 @@ public class CassandraData {
 	// A static variable that holds the session.  Only one of these will exist for the whole application
 	private static Session cassandraSession = null;
 	//Required constructor, but it doesn't need to do anything.
-	CassandraData () { int a = 1; a = a - 1; }
+	protected CassandraData () { int a = 1; a = a - 1; }
 
   /**
    *
