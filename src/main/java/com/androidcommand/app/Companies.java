@@ -21,6 +21,9 @@ public class Companies {
 	 */
 
     @PrimaryKeyColumn(name = "company_name", type = PrimaryKeyType.PARTITIONED)
+    public String company_donothing; 
+    public double company_doublenothing;
+    public int    company_intnothing;
     public String company_function;
     public String company_name;
     public String company_userid;
@@ -105,5 +108,33 @@ public class Companies {
 
 	  }
 
-	  public Companies() {}
+	  public Companies() { }
+	  
+	  public void DoNothing() {
+		  this.company_donothing = company_category;
+		  this.company_donothing = company_first;
+		  this.company_donothing = company_last;
+		  this.company_donothing = company_addr1c;
+		  this.company_donothing = company_addr2c;
+		  this.company_donothing = company_city;
+		  this.company_donothing = company_state;
+		  this.company_donothing = company_zipcode;
+		  this.company_donothing = company_phone;
+		  this.company_donothing = company_email;
+		  this.company_donothing = company_cityc;
+		  this.company_donothing = company_statec;
+		  this.company_donothing = company_zipcodec;
+		  this.company_donothing = company_country;
+		  this.company_donothing = company_phonec;
+		  this.company_donothing = company_emailc;
+		  this.company_donothing = company_websitec;
+		  this.company_doublenothing = company_latitudec;
+		  this.company_doublenothing = company_longitudec;
+		  this.company_intnothing = company_rantsc;
+		  this.company_intnothing = company_ravesc;
+		  this.company_donothing  = company_pr;
+		  this.company_donothing  = company_text;
+		  this.company_intnothing = company_uuid;
+		  
+	  }
 }

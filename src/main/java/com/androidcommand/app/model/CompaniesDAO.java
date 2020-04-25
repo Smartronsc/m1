@@ -3,7 +3,6 @@ package com.androidcommand.app.model;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,14 +22,13 @@ import com.datastax.driver.core.Session;
 
 import lombok.Data;
 
-import com.androidcommand.app.business.services.FunctionList;
 import com.androidcommand.app.model.CassandraData;
 
 @Table("companies")
 @Data
 @Configuration
 public class CompaniesDAO extends CassandraData {
-  	private static final long serialVersionUID = 1L;
+// 	private static final long serialVersionUID = 1L;
     private static Cluster cluster; 
 	private static Session session; 
     private List<String> company_functionlist;
@@ -234,11 +232,198 @@ public class CompaniesDAO extends CassandraData {
 			this.company_userid = company_userid;
 		}
 		
+		public void setCategory(String company_catagory) {
+			System.out.println("In CompaniesDAO.java setCompany() " + company_catagory);
+			this.company_category = company_catagory;
+		}
+		
+		public String getCategory() {
+			System.out.println("In CompaniesDAO.java getCatagory() " + this.company_category);
+			return this.company_category;
+		}
+
+		public void setFirst(String company_first) {
+			System.out.println("In CompaniesDAO.java setFirst() " + company_first);
+			this.company_category = company_first;
+		}
+		
+		public String getFirst() {
+			System.out.println("In CompaniesDAO.java getFirst() " + this.company_first);
+			return this.company_first;
+		}
+
+		public void setLast(String company_last) {
+			System.out.println("In CompaniesDAO.java setLast() " + company_last);
+			this.company_category = company_last;
+		}
+		
+		public String getLast() {
+			System.out.println("In CompaniesDAO.java getLast() " + this.company_last);
+			return this.company_last;
+		}
+
+		public void setCity(String company_city) {
+			System.out.println("In CompaniesDAO.java setCity() " + company_city);
+			this.company_city = company_city;
+		}
+		
+		public String getCity() {
+			System.out.println("In CompaniesDAO.java getCity() " + this.company_city);
+			return this.company_city;
+		}
+
+		public void setState(String company_state) {
+			System.out.println("In CompaniesDAO.java setState() " + company_state);
+			this.company_state = company_state;
+		}
+		
+		public String getState() {
+			System.out.println("In CompaniesDAO.java getState() " + this.company_state);
+			return this.company_state;
+		}
+		
+		public void setZipcode(String company_zipcode) {
+			System.out.println("In CompaniesDAO.java setZipcode() " + company_zipcode);
+			this.company_zipcode = company_zipcode;
+		}
+		
+		public String getZipcode() {
+			System.out.println("In CompaniesDAO.java getZipcode() " + this.company_zipcode);
+			return this.company_zipcode;
+		}
+		
+		public void setPhone(String company_phone) {
+			this.company_phone = company_phone;
+		}
+		
+		public String getPhone() {
+			return this.company_phone;
+		}
+		
+		public void setEmail(String company_email) {
+			this.company_email = company_email;
+		}
+		
+		public String getEmail() {
+			return this.company_email;
+		}
+		
+		public void setAddr1c(String company_addr1c) {
+			this.company_addr1c = company_addr1c;
+		}
+		
+		public String getAddr1c() {
+			return this.company_addr1c;
+		}
+		
+		public void setAddr2c(String company_addr2c) {
+			this.company_addr2c = company_addr2c;
+		}
+		
+		public String getAddr2c() {
+			return this.company_addr2c;
+		}
+		
+		public void setCityc(String company_cityc) {
+			this.company_cityc = company_cityc;
+		}
+		
+		public String getCityc() {
+			return this.company_cityc;
+		}
+		
+		public void setStatec(String company_statec) {
+			this.company_statec = company_statec;
+		}
+		
+		public String getStatec() {
+			return this.company_statec;
+		}
+		
+		public void setZipcodec(String company_zipcodec) {
+			this.company_zipcodec = company_zipcodec;
+		}
+		
+		public String getZipcodec() {
+			return this.company_zipcodec;
+		}
+		
+		public void setEmailc(String company_emailc) {
+			this.company_emailc = company_emailc;
+		}
+		
+		public String getEmailc() {
+			return this.company_emailc;
+		}
+		
+		public void setLatitudec(Double company_latitudec) {
+			this.company_latitudec = company_latitudec;
+		}
+		
+		public Double getLatitudec() {
+			return this.company_latitudec;
+		}
+		
+		public Double getLongitudec() {
+			return this.company_longitudec;
+		}
+		
+		public void setLongitudec(Double company_longitudec) {
+			this.company_longitudec = company_longitudec;
+		}
+		
+		public void setPhonec(String company_phonec) {
+			this.company_phonec = company_phonec;
+		}
+		
+		public String getPhonec() {
+			return this.company_phonec;
+		}
+		
+		public void setPr(String company_pr) {
+			this.company_pr = company_pr;
+		}
+		
+		public String getPr() {
+			return this.company_pr;
+		}
+		
+		public void setRant(int company_rantsc) {
+			this.company_rantsc = company_rantsc;
+		}
+		
+		public int getRantsc() {
+			return this.company_rantsc;
+		}
+		
+		public void setRave(int company_ravesc) {
+			this.company_ravesc = company_ravesc;
+		}
+		
+		public int getRavesc() {
+			return this.company_ravesc;
+		}
+		
+		public void setUuid(int company_uuid) {
+			this.company_uuid = company_uuid;
+		}
+		
+		public int getUUid() {
+			return this.company_uuid;
+		}
+		
+		public void company_text(String company_text) {
+			this.company_text = company_text;
+		}
+		
+		public String getText() {
+			return this.company_text;
+		}
+		
 		public String getCountry() {
 			System.out.println("In CompaniesDAO.java getCountry() " + this.company_country);
 			return this.company_country;
 		}
-		
 		public void setCountry(String company_country) {
 			System.out.println("In CompaniesDAO.java setCountry() " + company_country);
 			this.company_websitec = company_country;

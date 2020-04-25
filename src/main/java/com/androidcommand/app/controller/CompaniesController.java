@@ -8,8 +8,6 @@
 package com.androidcommand.app.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
