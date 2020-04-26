@@ -39,7 +39,8 @@ public class Companies {
     private String company_addr2c;
     private String company_cityc;
     private String company_statec; 
-    private String company_zipcodec;
+    private String company_postalcode;
+    private String company_postaliso;
     private String company_country;
     private String company_phonec;
     private String company_emailc;
@@ -68,7 +69,8 @@ public class Companies {
 	      final String company_addr2c,
 	      final String company_cityc,
 	      final String company_statec, 
-	      final String company_zipcodec,
+	      final String company_postalcode,
+	      final String company_postalciso,
 	      final String company_phonec,
 	      final String company_emailc,
 	      final String company_websitec,
@@ -93,7 +95,8 @@ public class Companies {
 	    this.company_addr2c = company_addr2c;
 	    this.company_cityc = company_cityc;
 	    this.company_statec = company_statec;
-	    this.company_zipcodec = company_zipcodec;
+	    this.company_postalcode = company_postalcode;
+	    this.company_postalcode = company_postaliso;
 	    this.company_country = company_country;
 	    this.company_phonec = company_phonec;
 	    this.company_emailc = company_emailc;
@@ -123,7 +126,8 @@ public class Companies {
 		  this.company_donothing = company_email;
 		  this.company_donothing = company_cityc;
 		  this.company_donothing = company_statec;
-		  this.company_donothing = company_zipcodec;
+		  this.company_donothing = company_postalcode;
+		  this.company_donothing = company_postaliso;
 		  this.company_donothing = company_country;
 		  this.company_donothing = company_phonec;
 		  this.company_donothing = company_emailc;

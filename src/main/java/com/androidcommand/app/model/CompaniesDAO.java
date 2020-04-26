@@ -20,6 +20,7 @@ import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.datastax.driver.core.Session;
 
+
 import lombok.Data;
 
 import com.androidcommand.app.business.services.SelectCompanyCompanies;
@@ -52,17 +53,18 @@ public class CompaniesDAO extends CassandraData {
     private String company_addr2c;
     private String company_cityc;
     private String company_statec; 
-    private String company_zipcodec;
+    private String company_postalcode;
+    private String company_postaliso;
     private String company_country;
     private String company_phonec;
     private String company_emailc;
     private String company_websitec;
     private Double company_latitudec;
     private Double company_longitudec;
-    private int company_rantsc;
-    private int company_ravesc;
+    private String company_rantsc;
+    private String company_ravesc;
     private String company_pr;
-    private int company_uuid;
+    private UUID   company_uuid;
     private String company_text;   
 
 	  public CompaniesDAO(	  
@@ -80,17 +82,18 @@ public class CompaniesDAO extends CassandraData {
 	      final String company_addr2c,
 	      final String company_cityc,
 	      final String company_statec, 
-	      final String company_zipcodec,
+	      final String company_postalcode,
+	      final String company_postaliso,
 	      final String company_country,
 	      final String company_phonec,
 	      final String company_emailc,
 	      final String company_websitec,
 	      final double company_latitudec,
 	      final double company_longitudec,
-	      final int rantsc,
-	      final int ravesc,
+	      final String rantsc,
+	      final String ravesc,
 	      final String company_pr,
-	      final int company_uuid,
+	      final UUID   company_uuid,
 	      final String company_text) {  
 	    this.company_name = company_name;
 	    this.company_userid = company_userid;
@@ -107,7 +110,8 @@ public class CompaniesDAO extends CassandraData {
 	    this.company_cityc = company_cityc;
 	    this.company_statec = company_statec;
 	    this.company_country = company_country;
-	    this.company_zipcodec = company_zipcodec;
+	    this.company_postalcode = company_postalcode;
+	    this.company_postalcode = company_postaliso;
 	    this.company_phonec = company_phonec;
 	    this.company_emailc = company_emailc;
  	    this.company_websitec = company_websitec;
@@ -120,6 +124,40 @@ public class CompaniesDAO extends CassandraData {
 	    this.company_text = company_text;
 
 	  }
+	  
+	  /**
+	   * Constructor to create a DAO object when given a single Cassandra Row object
+	   * @param row - a single Cassandra Java Driver Row
+	   */
+	  public CompaniesDAO(Row row) {
+	      company_category      = row.getString("company_category");           
+	      company_userid  	    = row.getString("company_userid");  	       
+	      company_first  		= row.getString("company_first");  		       
+	      company_last  		= row.getString("company_last");  		       
+	      company_city  		= row.getString("company_city");  		       
+	      company_state  		= row.getString("company_state");  		       
+	      company_zipcode  	    = row.getString("company_zipcode");  	       
+	      company_phone  		= row.getString("company_phone");  		       
+	      company_email  		= row.getString("company_email");
+	      company_name  		= row.getString("company_company");  	
+	      company_addr1c    	= row.getString("company_addr1c");  	       
+	      company_addr2c    	= row.getString("company_addr2c");  	       
+	      company_cityc         = row.getString("company_cityc");              
+	      company_statec        = row.getString("company_statec");             
+	      company_postalcode    = row.getString("company_postalcode");           
+	      company_phonec  	    = row.getString("company_phonec");  	       
+	      company_emailc  	    = row.getString("company_emailc");  	       
+	      company_websitec      = row.getString("company_websitec");           
+	      company_latitudec     = row.getDouble("company_latitudec");          
+	      company_longitudec    = row.getDouble("company_longitudec");         
+	      company_rantsc        = row.getString("company_rantsc");             
+	      company_ravesc        = row.getString("company_ravesc");             
+	      company_pr            = row.getString("company_pr");                 
+	      company_uuid   		= row.getUUID("company_uuid");   
+	      company_rantsc        = row.getString("company_rant");
+	      company_ravesc        = row.getString("company_rave");
+	  }
+
 
 	  public CompaniesDAO() {}
 	  
@@ -136,7 +174,7 @@ public class CompaniesDAO extends CassandraData {
 //				   CassandraOperations cassandraOps = new CassandraTemplate(session); 
 /*				 
 				   cassandraOps.insert(new CompaniesDAO("name1", "user", "category", "first", "last", "city", "state", "zipcode", "phone", "email",  
-						   "addr1c", "adddr2c", "cityc", "statec", "zipcodec", "phonec", "emailc", "website", 0.0, 0.0, 
+						   "addr1c", "adddr2c", "cityc", "statec", "postalcode", "postaliso", "phonec", "emailc", "website", 0.0, 0.0, 
 				           0, 0, "pr", 0, "text"));
 				   Select s = QueryBuilder.select().from("Companies");
   				   s.where(QueryBuilder.eq("company_name", "name1")); 
@@ -176,25 +214,31 @@ public class CompaniesDAO extends CassandraData {
 	    }
 		
 		@Bean
-	    public void selectCompany() {
-			String companyName = "None"; 
-	    	System.out.println("Entry0020 CompaniesDAO.java for selectCompany");
-
+	    public ArrayList<String> selectCompany(String selection) {
+		 	String companyInfo   = " ";
+		 	String infoArray     = "[";
+			if (company_name == null ) company_name="Company"; 
+	    	System.out.println("Entry0020 CompaniesDAO.java for selectCompany " + selection);
 	    	String selectCompanyCompanies = "SELECT * FROM rant.companies WHERE company_name = ?";
 	    	PreparedStatement preparedCompanyCompanies = SelectCompanyCompanies.preparedCompanyCompanies(selectCompanyCompanies);
-	    	BoundStatement boundCompanyCompanies = preparedCompanyCompanies.bind(company_name);
+	    	BoundStatement boundCompanyCompanies = preparedCompanyCompanies.bind(selection);
 			ResultSet results = CassandraData.getSession().execute(boundCompanyCompanies);
-
-			for(Row row : results) {
-			   companyName = row.getString("company_name");
-			   System.out.println("Entry0040 CompanesDAO.java " + companyName);
-			   setCompany(companyName);
-			} 
-			return;
+			ArrayList<String> companyTable = new ArrayList<String>();
+			
+			for (Row row : results) { 
+	    		String companyName   = row.getString("company_name");
+	    		String companyCity   = row.getString("company_city");
+	    		String companyState  = row.getString("company_state");
+				
+	    		companyInfo = "companyName:"+companyName+",city:"+companyCity+",state:"+companyState;
+	    		companyTable.add(companyInfo);
+	    		}
+			System.out.println("Entry0040 CompanesDAO.java " + infoArray);
+			return companyTable;
 	    }
 		
 		public String getCompany() {
-//			System.out.println("Entry0030 CompaniesDAO.java getCompany() " + this.company_name);
+			System.out.println("Entry0030 CompaniesDAO.java getCompany() " + this.company_name);
 			return this.company_name;
 		}
 	 
@@ -321,14 +365,22 @@ public class CompaniesDAO extends CassandraData {
 			return this.company_statec;
 		}
 		
-		public void setZipcodec(String company_zipcodec) {
-			this.company_zipcodec = company_zipcodec;
+		public void setpostalcode(String company_postalcode) {
+			this.company_postalcode = company_postalcode;
 		}
 		
-		public String getZipcodec() {
-			return this.company_zipcodec;
+		public String getpostalcode() {
+			return this.company_postalcode;
 		}
 		
+		public void setPostaliso(String company_postaliso) {
+			this.company_postaliso = company_postaliso;
+		}
+		
+		public String getPostaliso() {
+			return this.company_postaliso;
+		}
+			
 		public void setEmailc(String company_emailc) {
 			this.company_emailc = company_emailc;
 		}
@@ -369,27 +421,27 @@ public class CompaniesDAO extends CassandraData {
 			return this.company_pr;
 		}
 		
-		public void setRant(int company_rantsc) {
+		public void setRant(String company_rantsc) {
 			this.company_rantsc = company_rantsc;
 		}
 		
-		public int getRantsc() {
+		public String getRantsc() {
 			return this.company_rantsc;
 		}
 		
-		public void setRave(int company_ravesc) {
+		public void setRave(String company_ravesc) {
 			this.company_ravesc = company_ravesc;
 		}
 		
-		public int getRavesc() {
+		public String getRavesc() {
 			return this.company_ravesc;
 		}
 		
-		public void setUuid(int company_uuid) {
+		public void setUuid(UUID company_uuid) {
 			this.company_uuid = company_uuid;
 		}
 		
-		public int getUUid() {
+		public UUID getUUid() {
 			return this.company_uuid;
 		}
 		

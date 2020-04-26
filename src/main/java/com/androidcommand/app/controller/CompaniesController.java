@@ -34,18 +34,21 @@ public class CompaniesController {
 	 	ArrayList<String> company_functions = FunctionList.getInstance(company);
 	 	company.setFunctions(company_functions);
 	 	ArrayList<String>functions = company.getFunctions();
-//	 	System.out.println("Entry0015 CompanyController.java new functions" + functions);
-//	 	model.addAttribute(company.getFunctions());
-//	 	company.getFunctions();
-	 	company.selectCompany();
 	    model.addAttribute("functions", functions);
+	    company.setCompany("company");
         return "addCompany";
     }
 
     @PostMapping("/showCompany")
-    public String processForm(@ModelAttribute("company") CompaniesDAO company, Model model) {
-//  public String processForm(@ModelAttribute("company") CompaniesDAO company, String company_name, String company_function) {
-    	System.out.println("Entry0020 CompanyController.java for /showCOmpany " + company.getCompany()); 
+    public String processForm(@ModelAttribute("company") CompaniesDAO company, @ModelAttribute("companyTable") ArrayList<String> companyTable, Model model) {
+ 
+//    	CompaniesDAO company = new CompaniesDAO();
+    	System.out.println("Entry0020 CompanyController.java for /showCOmpany in code");
+    	System.out.println("Entry0021 CompanyController.java for /showCOmpany " + company.getCompany());
+    	System.out.println("Entry0022 CompanyController.java for /showCOmpany ");
+//      ArrayList<String> companyTable = company.selectCompany(company.getCompany());
+    	companyTable = company.selectCompany(company.getCompany());
+    	model.addAttribute("companyTable", companyTable);	
         return "showCompany";
     }
 
