@@ -19,10 +19,9 @@ import com.datastax.driver.core.PreparedStatement;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.datastax.driver.core.Session;
-
-
 import lombok.Data;
 
+import com.androidcommand.app.CompanyTable;
 import com.androidcommand.app.business.services.SelectCompanyCompanies;
 import com.androidcommand.app.model.CassandraData;
 
@@ -34,7 +33,9 @@ public class CompaniesDAO extends CassandraData {
     private static Cluster cluster; 
 	private static Session session; 
     private List<String> company_functionlist;
+	private ArrayList<String> company_info;   
     public  ArrayList<String> functions;
+    public  ArrayList<String> companyTable;
 //	private CassandraOperations cassandraOps;
 
 
@@ -65,7 +66,8 @@ public class CompaniesDAO extends CassandraData {
     private String company_ravesc;
     private String company_pr;
     private UUID   company_uuid;
-    private String company_text;   
+    private String company_text;
+
 
 	  public CompaniesDAO(	  
 		  final String company_name,	  
@@ -215,27 +217,39 @@ public class CompaniesDAO extends CassandraData {
 		
 		@Bean
 	    public ArrayList<String> selectCompany(String selection) {
-		 	String companyInfo   = " ";
-		 	String infoArray     = "[";
 			if (company_name == null ) company_name="Company"; 
 	    	System.out.println("Entry0020 CompaniesDAO.java for selectCompany " + selection);
 	    	String selectCompanyCompanies = "SELECT * FROM rant.companies WHERE company_name = ?";
 	    	PreparedStatement preparedCompanyCompanies = SelectCompanyCompanies.preparedCompanyCompanies(selectCompanyCompanies);
 	    	BoundStatement boundCompanyCompanies = preparedCompanyCompanies.bind(selection);
 			ResultSet results = CassandraData.getSession().execute(boundCompanyCompanies);
-			ArrayList<String> companyTable = new ArrayList<String>();
+			CompanyTable companyTable = new CompanyTable();
+			ArrayList<String> companyInfo = new ArrayList<String>();
 			
 			for (Row row : results) { 
-	    		String companyName   = row.getString("company_name");
-	    		String companyCity   = row.getString("company_city");
-	    		String companyState  = row.getString("company_state");
+				System.out.println("Entry0020 CompaniesDAO.java for selectCompany " + row.getString("company_name"));
 				
-	    		companyInfo = "companyName:"+companyName+",city:"+companyCity+",state:"+companyState;
-	    		companyTable.add(companyInfo);
-	    		}
-			System.out.println("Entry0040 CompanesDAO.java " + infoArray);
-			return companyTable;
+				companyTable.setCompanytable_name(row.getString("company_name"));
+				companyTable.setCompanytable_city(row.getString("company_city"));
+				companyTable.setCompanytable_state(row.getString("company_state"));
+				companyInfo.add(companyTable.getCompanytable_name());
+				companyInfo.add(companyTable.getCompanytable_city());
+				companyInfo.add(companyTable.getCompanytable_state());
+				setCompanyinfo(companyInfo);
+			}
+//			System.out.println("Entry0040 CompaniesDAO.java " + companyInfo);
+			return companyInfo;
 	    }
+		
+		public void setCompanyinfo(ArrayList<String> company_info) {
+//		    System.out.println("Entry0045 CompaniesDAO.java setCompanyinfo() " + company_info);
+		    this.company_info = company_info;
+		} 
+		
+		public ArrayList<String> getCompanyinfo() {
+		    System.out.println("Entry0050 CompaniesDAO.java getCompanyinfo() " + this.company_info);
+		    return this.company_info;
+		} 
 		
 		public String getCompany() {
 			System.out.println("Entry0030 CompaniesDAO.java getCompany() " + this.company_name);
@@ -478,30 +492,17 @@ public class CompaniesDAO extends CassandraData {
 			} 
 		
 		public List<String> getFunctionlist() {
-//			   System.out.println("Entry0005 CompaniesDAO.java getFunctionlist) ");
 			   return this.company_functionlist;
 			} 
 		
 		public ArrayList<String> getFunctions() {
-//			System.out.println("Entry0060 CompaniesDAO.java getFuctions() " + this.functions.toString() );
 			return this.functions;
 		} 
 
 		public void setFunctions(ArrayList<String> functions) {
-//			System.out.println("Entry0010 CompaniesDAO.java setFunctions() entry ");
-//			System.out.println("Entry0010 CompaniesDAO.java setFunctions() " + functions.toString()  );
-//		    System.out.println("Entry0010 CompaniesDAO.java setFunctions() " + functions.size()); 
 			if (functions.isEmpty()) {  System.out.println("Entry0010 CompaniesDAO.java setFunctions() empty "); return; }
-//			System.out.println("Entry0010 CompaniesDAO.java setFunctions()1 " + functions.toString()  );
 			this.functions = functions;
 		}
-		
-		public String CompanyInformation() {
-		    System.out.println("In CompaniesDAO.java CompanyInformation() " + this.company_userid);
-		    return this.company_userid;
-		} 
-
-		
 	}
 
 

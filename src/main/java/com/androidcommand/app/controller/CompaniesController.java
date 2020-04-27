@@ -40,15 +40,10 @@ public class CompaniesController {
     }
 
     @PostMapping("/showCompany")
-    public String processForm(@ModelAttribute("company") CompaniesDAO company, @ModelAttribute("companyTable") ArrayList<String> companyTable, Model model) {
- 
-//    	CompaniesDAO company = new CompaniesDAO();
-    	System.out.println("Entry0020 CompanyController.java for /showCOmpany in code");
-    	System.out.println("Entry0021 CompanyController.java for /showCOmpany " + company.getCompany());
-    	System.out.println("Entry0022 CompanyController.java for /showCOmpany ");
-//      ArrayList<String> companyTable = company.selectCompany(company.getCompany());
-    	companyTable = company.selectCompany(company.getCompany());
-    	model.addAttribute("companyTable", companyTable);	
+    public String processForm(@ModelAttribute("company") CompaniesDAO company, @ModelAttribute("table") ArrayList<String> companyInfo, Model model) {
+    	company.selectCompany(company.getCompany());
+    	ArrayList<String> table = company.getCompanyinfo();
+    	model.addAttribute("table", table);	
         return "showCompany";
     }
 

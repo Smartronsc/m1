@@ -6,13 +6,14 @@
 </head>
 <body>
 
+<a href="/m1/addCompany.jsp">Submit another message</a><br>
+
+<!-- 
 <p th:text="'Company: ' + ${company.company}"></p>
 <p th:text="'UserId: ' + ${company.userid}"></p>	
 <p th:text="'Website: ' + ${company.website}"></p>
-<a href="/m1/addCompany.jsp">Submit another message</a>
 
-
-<a href="/m1/addCompany.jsp">Submit another message</a>
+-->
 
 <table class="table table-striped">
                 <thead>
@@ -25,13 +26,9 @@
                 </tr>
                 </thead>
                 <tbody>
-
-                    <tr th:each="companyTable : ${companyTable}">
-                     <td>companyTable.name</td>
-                     <td>companyTable.city</td>
-                     <td>companyTable.state</td>
+                   <tr th:each="table : ${table}">
+                     <td th:text="${table}"></td> 
                     </tr>   
-
                 </tbody>
 </table>
 
