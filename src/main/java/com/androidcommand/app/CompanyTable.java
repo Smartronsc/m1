@@ -1,5 +1,7 @@
 package com.androidcommand.app;
 
+import java.io.Serializable;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.cassandra.core.mapping.Table;
 
@@ -11,13 +13,17 @@ import lombok.Setter;
 @Getter @Setter
 @Configuration
 @Data
-public class CompanyTable {
+public class CompanyTable implements Serializable {
 	
 	/*
 	 * form-backing object 
 	 */
 
-    public String companyTable_donothing; 
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public String companyTable_donothing; 
     public double companyTable_doublenothing;
     public int    companyTable_intnothing;
     public String companyTable_function;
@@ -137,14 +143,14 @@ public class CompanyTable {
 		  this.companyTable_intnothing = companyTable_uuid;
 		  
 	  }
-	  
+ 
 		public String getCompanytable_name() {
-			System.out.println("Entry0030 CompanyTable.java companyTable_name() " + this.companyTable_name);
+			System.out.println("Entry0100 CompanyTable.java companyTable_name() " + this.companyTable_name);
 			return this.companyTable_name;
 		}
 	 
 		public void setCompanytable_name(String companyTable_name) {
-			System.out.println("Entry0040 CompanyTable.java companyTable_name() " + companyTable_name);
+			System.out.println("Entry0110 CompanyTable.java companyTable_name() " + companyTable_name);
 			this.companyTable_name = companyTable_name;
 		}
 
@@ -160,8 +166,8 @@ public class CompanyTable {
 			return this.companyTable_state;
 		}
 	 
-		public void setCompanytable_state(String companyTable_state) {
-			this.companyTable_state = companyTable_state;
+		public void setCompanytable_state(String string) {
+			this.companyTable_state = string;
 		}
 
 }

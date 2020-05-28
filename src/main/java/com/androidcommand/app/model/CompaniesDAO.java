@@ -33,7 +33,7 @@ public class CompaniesDAO extends CassandraData {
     private static Cluster cluster; 
 	private static Session session; 
     private List<String> company_functionlist;
-	private ArrayList<String> company_info;   
+	private List<String> company_info;   
     public  ArrayList<String> functions;
     public  ArrayList<String> companyTable;
 //	private CassandraOperations cassandraOps;
@@ -216,40 +216,40 @@ public class CompaniesDAO extends CassandraData {
 	    }
 		
 		@Bean
-	    public ArrayList<String> selectCompany(String selection) {
+	    public CompanyTable selectCompany(String selection) {
 			if (company_name == null ) company_name="Company"; 
-	    	System.out.println("Entry0020 CompaniesDAO.java for selectCompany " + selection);
+//	    	System.out.println("Entry0020 CompaniesDAO.java for selectCompany " + selection);
 	    	String selectCompanyCompanies = "SELECT * FROM rant.companies WHERE company_name = ?";
 	    	PreparedStatement preparedCompanyCompanies = SelectCompanyCompanies.preparedCompanyCompanies(selectCompanyCompanies);
 	    	BoundStatement boundCompanyCompanies = preparedCompanyCompanies.bind(selection);
 			ResultSet results = CassandraData.getSession().execute(boundCompanyCompanies);
 			CompanyTable companyTable = new CompanyTable();
-			ArrayList<String> companyInfo = new ArrayList<String>();
+//			List<String> companyInfo = new ArrayList<String>(); 
 			
-			for (Row row : results) { 
-				System.out.println("Entry0020 CompaniesDAO.java for selectCompany " + row.getString("company_name"));
-				
+			for (Row row : results) { 		
 				companyTable.setCompanytable_name(row.getString("company_name"));
 				companyTable.setCompanytable_city(row.getString("company_city"));
 				companyTable.setCompanytable_state(row.getString("company_state"));
-				companyInfo.add(companyTable.getCompanytable_name());
-				companyInfo.add(companyTable.getCompanytable_city());
-				companyInfo.add(companyTable.getCompanytable_state());
-				setCompanyinfo(companyInfo);
+//				companyInfo.  .add(companyTable.getCompanytable_name());
+//				companyInfo.add(companyTable.getCompanytable_city());
+//				companyInfo.add(companyTable.getCompanytable_state()); 
+//				setCompanyinfo(companyInfo);
 			}
 //			System.out.println("Entry0040 CompaniesDAO.java " + companyInfo);
-			return companyInfo;
+//			return companyInfo;
+			return companyTable;
 	    }
 		
-		public void setCompanyinfo(ArrayList<String> company_info) {
+		public void setCompanyinfo(List<String> companyInfo) {
 //		    System.out.println("Entry0045 CompaniesDAO.java setCompanyinfo() " + company_info);
-		    this.company_info = company_info;
+		    this.company_info = companyInfo;
 		} 
 		
-		public ArrayList<String> getCompanyinfo() {
+		public List<String> getCompanyinfo() {
 		    System.out.println("Entry0050 CompaniesDAO.java getCompanyinfo() " + this.company_info);
 		    return this.company_info;
 		} 
+		
 		
 		public String getCompany() {
 			System.out.println("Entry0030 CompaniesDAO.java getCompany() " + this.company_name);

@@ -8,6 +8,7 @@
 package com.androidcommand.app.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -42,7 +43,7 @@ public class CompaniesController {
     @PostMapping("/showCompany")
     public String processForm(@ModelAttribute("company") CompaniesDAO company, @ModelAttribute("table") ArrayList<String> companyInfo, Model model) {
     	company.selectCompany(company.getCompany());
-    	ArrayList<String> table = company.getCompanyinfo();
+    	List<String> table = company.getCompanyinfo();
     	model.addAttribute("table", table);	
         return "showCompany";
     }
